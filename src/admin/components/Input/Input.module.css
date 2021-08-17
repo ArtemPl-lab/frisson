@@ -1,0 +1,15 @@
+.input{
+    border: 1px solid #96A4AE !important;
+    box-sizing: border-box !important;
+    border-radius: 5px !important;
+    padding: 10px 24px !important;
+    font-family: 'M PLUS 1p', sans-serif !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 15px !important;
+    line-height: 20px !important;
+    width: 338px !important;
+    height: 40px !important;
+    display: block !important;
+    color: #031523 !important;
+}

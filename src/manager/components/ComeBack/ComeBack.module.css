@@ -1,0 +1,16 @@
+.back{
+    display: inline-block;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    color: #0E2F56;
+    padding-left: 18px;
+    background: url(../../images/back.svg) no-repeat;
+    background-position: 5% center;
+    cursor: pointer;
+    transition: .3s;
+}
+.back:hover{
+    background-position-x: left;
+}
+ 

@@ -1,0 +1,12 @@
+.textarea{
+    font-family: 'M PLUS 1p', sans-serif;
+    padding: 12px;
+    border: 1px solid #BBBFDB;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 20px;
+    color: #031523;
+}

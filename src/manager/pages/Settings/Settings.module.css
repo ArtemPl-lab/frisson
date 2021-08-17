@@ -1,0 +1,38 @@
+.wrapper{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 40px 60px;
+}
+.wrapper input{
+    margin-bottom: 16px;
+}
+.info__label{
+    font-family: 'M PLUS 1p', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    font-feature-settings: 'ss02' on, 'ss09' on;
+    color: #96A4AE;
+    margin-bottom: 16px;
+}
+.bulk{
+    display: inline-block;
+    width: fit-content;
+    font-family: 'M PLUS 1p', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    font-feature-settings: 'ss02' on, 'ss09' on;
+    color: #FC3B2D;
+    margin-top: 70px;
+    transition: .3s;
+    cursor: pointer;
+}
+.bulk:hover{
+    opacity: .8;
+}

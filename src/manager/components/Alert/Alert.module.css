@@ -1,0 +1,21 @@
+.wrapper{
+    width: 100%;
+    height: 30px;
+    background: #D5E2E8;
+    box-shadow: 0px 4px 8px rgba(1, 54, 96, 0.04), 0px 0px 2px rgba(1, 54, 96, 0.06), 0px 0px 1px rgba(1, 54, 96, 0.04);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 20px;
+    color: #031523;
+    position: relative;
+    z-index: 10;
+    border-radius: 0;
+}
+.wrapper a{
+    text-decoration: underline;
+}
