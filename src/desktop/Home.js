@@ -3,6 +3,7 @@ import Header from './Header'
 import bgImg from './assets/img/bg-img.png'
 import bgImgSmall from './assets/img/bg-img-small.png'
 import Footer from './Footer'
+import { Link } from 'react-router-dom'
 
 const HomePage = () => {
     return(
@@ -19,8 +20,8 @@ const HomePage = () => {
                                 <h1>Все целевые клиенты уже в приложении Frisson</h1>
                                 <p>Мы создали комьюнити активных людей внутри одного приложения. Рассказывайте о себе, повышайте рейтинг, накапливайте отзывы <br /> и следите за успехами своего бизнеса.</p>
                                 <div className="buttons">
-                                    <a href="/manager/login" className="button white">Вход в кабинет</a>
-                                    <a href="/manager/register" className="button red">Регистрация</a>
+                                    <Link to="/manager/login" className="button white">Вход в кабинет</Link>
+                                    <Link to="/manager/register" className="button red">Регистрация</Link>
                                 </div>
                             </div>
                         </div>

@@ -1,11 +1,16 @@
-import { Route, Switch } from "react-router-dom"
+import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom"
 import { Navigation } from "../../components"
-import { PlaceInfo } from "./Info";
+import { useStore } from "../../store";
 
-export const SinglePlace = props => {
+export const SinglePlace = observer(props => {
+    const { places } = useStore();
+    const { id } = useParams();
+    useEffect(() => places.getPlace(id), [id]);
     return(
         <>
             <Navigation />
         </>
     );
-}
+});

@@ -8,9 +8,10 @@ export const BaseRoutes = props => {
             <Route path="/places/:id" component={Pages.SinglePlace}/>
             <Route path="/places/:id/info" component={Pages.PlaceInfo} />
             <Route path="/places/:id/gallery" component={Pages.PlaceGallery} />
-            <Route path="*/logout" component={Pages.LogoutConfirm}/>
             <Route path="/settings" component={Pages.Settings}/>
-            <Route render={() => <Redirect to="/home" />} />
+            <Route path="*/logout" component={Pages.LogoutConfirm}/>
+            <Route path="*/confirm_phone/:phone" component={Pages.ConfirmPhone}/>
+            {/* <Route render={() => <Redirect to="/home" />} /> */}
         </>
     );
 }
@@ -19,7 +20,7 @@ export const AuthRoutes = props => {
         <>
             <Route path="/login" component={Pages.Login} />
             <Route path="/register" component={Pages.Register} />
-            <Route render={() => <Redirect to="/login" />} />
+            {/* <Route render={() => <Redirect to="/login" />} /> */}
         </>
     );
 }

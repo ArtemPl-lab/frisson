@@ -15,7 +15,8 @@ const modalContext = createContext();
             ...prev,
             options: {
                 ...prev.options,
-                show: true
+                show: true,
+                ...this.props.options
             },
             children: this.props.children
         }));
@@ -53,6 +54,19 @@ export const ModalProvider = ({ children }) => {
     );
 }
 
+export const useModal = ({ children, options = {}  }) => {
+    const [_, setModal] = useContext(modalContext);
+    setModal(prev => ({
+        ...prev,
+        options: {
+            ...prev.options,
+            show: true,
+            ...options
+        },
+        children: children
+    }))
+}
+
 const ModalWrapper = () => {
     const history = useHistory();
     const [modal, setModal] = useContext(modalContext);
@@ -80,8 +94,8 @@ const ModalWrapper = () => {
                     ${modal.options.show ? styles.show : styles.hidden}
                 `}
                 style={{
-                    width: modal.width || 240,
-                    height: modal.height || 144
+                    width: modal.options.width || 240,
+                    height: modal.options.height || 144
                 }}
             >
                 {modal.children}

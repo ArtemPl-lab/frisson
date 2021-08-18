@@ -31,7 +31,7 @@ class API{
         return fetch(query, {
             method: 'POST',
             headers: this.authHeaders,
-            body: JSON.stringify(body)
+            body: body
         }); 
     }
     put(path, params = {},  body = {}){

@@ -1,52 +1,24 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from './Places.module.css';
-import PlacesApi from "../../api/entities/Places";
 import { Content, Headline, Input, TextArea } from "../../components";
 import { Load } from "../Load";
 import Toggle from "../../components/Toggle/Toggle";
+import { useStore } from "../../store";
+import { observer } from "mobx-react-lite";
 
-export const PlaceInfo = props => {
+export const PlaceInfo = observer(props => {
     const { id } = useParams();
-    const [state, setState] = useState({
-        "city_id": null,
-        "name": "Новое место",
-        "activity_type_id": 123,
-        "search_tag_ids": [
-          123,
-          456
-        ],
-        "description": "Вашему вниманию предполагается уникальный спортивный аттракцион...",
-        "address": "Россия, Ленинградская область, красный дом в Пушкинском районе",
-        "feature": "Оплата только наличными",
-        "latitude": 56.5656565656,
-        "longitude": 34.3434343434,
-        "phones": [
-          "+79876543210",
-          "+70123456789"
-        ],
-        "site_web": "https://example.com",
-        "site_facebook": "https://example.com",
-        "site_vk": "https://example.com",
-        "site_instagram": "https://example.com",
-        "site_youtube": "https://example.com",
-        "site_twitter": "https://example.com",
-        "work_time": "{\"monday\":[\"12:00\", \"22:00\"]}"
-    });
+    const { places } = useStore();
+    const [state, setState] = useState(null);
     const handleChange = e => {
         setState(prev => ({
             ...prev,
             [e.target.name]: e.target.value 
         }));
     }
-    useEffect(() => {
-        const getData = async () => {
-            const data = PlacesApi.getPlace(id);
-            setState(data);
-        }
-        if(id !== 'new') getData();
-    }, id);
-    if(!state.city_id && id !== 'new') return <Load />
+    useEffect(() => setState(places.current), [places.current]);
+    if(!state || places.loading) return <Load />
     return(
         <Content>
             {
@@ -161,4 +133,4 @@ export const PlaceInfo = props => {
             </div>
         </Content>
     );
-}
+});

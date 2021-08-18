@@ -3,9 +3,11 @@ import { ComeBack, Headline, Input } from '../../components';
 import { useStore } from '../../store';
 import { generate } from 'generate-password';
 import styles from './Settings.module.css';
+import { useHistory } from 'react-router-dom';
 
 export const Settings = observer(props => {
     const { manager } = useStore();
+    const history = useHistory();
     const generatePassword = () => {
         manager.update({
             password: generate({
@@ -13,6 +15,11 @@ export const Settings = observer(props => {
                 numbers: true
             })
         });
+    }
+    const handleSave = (e) => {
+        // if(manager.data.phone){
+            history.push(`${history.location.pathname}/confirm_phone/+79055675532`);
+        // }
     }
     return(
         <div className={styles.wrapper}>
@@ -57,6 +64,9 @@ export const Settings = observer(props => {
                 })}
             />
             <div className={styles.generate_pass} onClick={generatePassword}>Сгенерировать пароль</div>
+            <button onClick={handleSave}>
+                Подтвердить
+            </button>
             <div className={styles.bulk}>
                 Удалить аккаунт
             </div>

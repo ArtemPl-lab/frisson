@@ -8,3 +8,4 @@ export * from './SavePanel/SavePanel';
 export * from './Content';
 export * from './Input';
 export * from './TextArea';
+export * from './NewImage';

@@ -11,6 +11,16 @@
     transition: .3s;
     overflow: hidden;
 }
+.linear::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(360deg, #0E2F56 0%, rgba(14, 47, 86, 0.887807) 23.72%, rgba(14, 47, 86, 0.154277) 69.56%, rgba(14, 47, 86, 0) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
 .wrapper:hover{
     opacity: .8;
 }
@@ -48,4 +58,16 @@
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.name{
+    position: absolute;
+    font-family: 'M PLUS 1p', sans-serif;
+    left: 16px;
+    bottom: 16px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    z-index: 3;
 }

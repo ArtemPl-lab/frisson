@@ -7,7 +7,10 @@ export const LogoutConfirm = props => {
     const history = useHistory();
     const { manager } = useStore();
     return(
-        <Modal>
+        <Modal options={{
+            width: "240px",
+            height: "144px"
+        }}>
             <div className={styles.title}>
                 Выйти?
             </div>

@@ -41,12 +41,10 @@ export const PlacesList = props => {
                 Ваши активности
             </div>
             <div className={styles.places}>
+                <PlaceCard />
                 {
                     places.list.map(place => <PlaceCard {...place}/>)
                 }
-                <PlaceCard>
-
-                </PlaceCard>
             </div>
         </div>
     );
