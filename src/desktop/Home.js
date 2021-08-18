@@ -2,10 +2,15 @@ import React from 'react'
 import Header from './Header'
 import bgImg from './assets/img/bg-img.png'
 import bgImgSmall from './assets/img/bg-img-small.png'
+import buttonBubbles from './assets/img/bottom-bubbles.svg'
+import phone from './assets/img/phone.png'
+import googlePlayImg from './assets/img/google-play.png'
+import appStoreImg from './assets/img/app-store.png'
 import Footer from './Footer'
 import { Link } from 'react-router-dom'
+import ExternalLink from './ExternalLink'
 
-const HomePage = () => {
+const HomePage = ({ googlePlay, appStore }) => {
     return(
         <>
         <Header homepage />
@@ -27,17 +32,17 @@ const HomePage = () => {
                         </div>
                         <div className="col col-md-5">
                             <div className="images">
-                                <img src="img/bottom-bubbles.svg" alt="" className="bottomBubbles" />
+                                <img src={buttonBubbles} alt="" className="bottomBubbles" />
                                 <div className="phone">
-                                    <img src="img/phone.png" alt="" />
+                                    <img src={phone} alt="" />
                                 </div>
                                 <div className="codes">
-                                    <a href="#">
-                                        <img src="img/google-play.png" alt="" />
-                                    </a>
-                                    <a href="#">
-                                        <img src="img/app-store.png" alt="" />
-                                    </a>
+                                    <ExternalLink to={googlePlay}>
+                                        <img src={googlePlayImg} alt="" />
+                                    </ExternalLink>
+                                    <ExternalLink to={appStore}>
+                                        <img src={appStoreImg} alt="" />
+                                    </ExternalLink>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +50,7 @@ const HomePage = () => {
                 </div>
             </div>
         </section>
-        <Footer facebook="#" vk="#" youtube="#" instagram="#" />
+        <Footer />
         </>
     );
 }

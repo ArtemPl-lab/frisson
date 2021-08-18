@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import Header from '../../../desktop/Header';
 import { useStore } from '../../store';
 import { Load } from '../Load';
 import styles from './Login.module.css';
@@ -26,6 +27,7 @@ export const Login = props => {
     if(manager.data) return <Redirect to="/places"/>
     return(
         <>
+            <Header />
             <section id="enter" className={`${styles.fullscreen} ${styles.formPage}`}>
                 <div className={styles.wrapper}>
                     <h2>Вход в личный кабинет Frisson</h2>
