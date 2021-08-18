@@ -1,0 +1,109 @@
+@media screen and (max-width:1440px) {
+    #homepage.homepageVar .bg {
+      width: 140%
+    }
+  }
+  @media screen and (max-height:780px) {
+    #registration {
+      height: 780px
+    }
+  }
+  @media screen and (max-width:1230px) {
+    body,
+    html {
+      overflow: hidden
+    }
+    #desktopOnly {
+      display: -webkit-box !important;
+      display: -ms-flexbox !important;
+      display: flex !important;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: #fff;
+      z-index: 5
+    }
+    #desktopOnly .wrapper {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      min-width: 713px
+    }
+    #desktopOnly .wrapper .logo {
+      margin-bottom: 39px
+    }
+    #desktopOnly .wrapper .portrait {
+      display: none
+    }
+    #desktopOnly .wrapper p {
+      max-width: 290px;
+      margin-bottom: 35px
+    }
+    #desktopOnly .wrapper .dec {
+      width: 46vw;
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+      padding-top: 1.5vw
+    }
+    #desktopOnly .wrapper .shop img {
+      width: 152px
+    }
+    #desktopOnly .wrapper .shop:not(:last-of-type) {
+      margin-right: 12px
+    }
+  }
+  @media screen and (max-width:414px) and (orientation:portrait) {
+    #desktopOnly .wrapper {
+      min-width: auto;
+      text-align: center;
+      margin-top: 5vh
+    }
+    #desktopOnly .wrapper .left {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center
+    }
+    #desktopOnly .wrapper .logo {
+      width: 113px;
+      position: fixed;
+      top: 6vh;
+      left: 0;
+      right: 0;
+      margin: 0 auto
+    }
+    #desktopOnly .wrapper .portrait {
+      display: block
+    }
+    #desktopOnly .wrapper .landscape {
+      display: none
+    }
+    #desktopOnly .wrapper .dec {
+      width: auto;
+      max-width: 375px;
+      margin: 0 auto 10vw -20px;
+      padding-top: 0
+    }
+    #desktopOnly .wrapper .shop:not(:last-of-type) {
+      margin-right: 0;
+      margin-bottom: 21px
+    }
+  }

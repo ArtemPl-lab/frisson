@@ -4,6 +4,8 @@ import Header from '../../../desktop/Header';
 import { useStore } from '../../store';
 import { Load } from '../Load';
 import styles from './Login.module.css';
+import DesktopOnly from '../../../desktop/DesktopOnly';
+
 export const Login = props => {
     const { manager } = useStore();
     const [load, setLoad] = useState(false);
@@ -67,6 +69,7 @@ export const Login = props => {
                     </div>
                 </div>
             </section>
+            <DesktopOnly />
         </>
     );
 }

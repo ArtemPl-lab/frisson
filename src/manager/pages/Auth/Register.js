@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Header from '../../../desktop/Header';
 import { useStore } from '../../store';
 import styles from './Login.module.css';
+import DesktopOnly from '../../../desktop/DesktopOnly';
+
 export const Register = observer(props => {
     const [validation, setValidation] = useState(false);
     const [state, setState] = useState({
@@ -97,22 +99,7 @@ export const Register = observer(props => {
                     </div>
                 </div>
             </section>
-            <div id="desktopOnly">
-                <div className={styles.wrapper}>
-                    <div className={styles.left}>
-                        <img src="img/blue-logo.svg" alt="" className={styles.logo} />
-                        <img src="img/desktop-only.png" alt="" className={`${styles.dec} ${styles.portrait}`} />
-                        <p>Раздел для организаторов и владельцев бизнеса доступен только на большом экране.</p>
-                        <a href="#" className={styles.shop}>
-                            <img src="img/app.png" alt="" />
-                        </a>
-                        <a href="#" className={styles.shop}>
-                            <img src="img/google.png" alt="" />
-                        </a>
-                    </div>
-                    <img src="img/desktop-only.png" alt="" className={`${styles.dec} ${styles.landscape}`} />
-                </div>
-            </div>
+            <DesktopOnly />
         </>
     );
 });

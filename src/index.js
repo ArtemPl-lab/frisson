@@ -5,7 +5,7 @@ import Admin from './admin';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { StoreProvider as AdminStore } from './admin/store';
 import { StoreProvider as ManagerStore } from './manager/store';
-import HomePage from './desktop/Home';
+import HomePage from './desktop/HomeAlt';
 import './index.css';
 import { ScrollToTop } from './common';
 
