@@ -290,7 +290,7 @@ input[type=checkbox] {
 }
 input[type=checkbox]::after {
   content: '';
-  /* background-image: url(../img/checked.svg); */
+  background-image: url(./desktop/assets/img/checked.svg);
   background-repeat: no-repeat;
   background-size: 60%;
   background-position: center;
