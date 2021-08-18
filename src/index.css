@@ -1,3 +1,6 @@
+@import "./desktop/assets/fonts.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap-grid";
+
 a,
 abbr,
 acronym,
@@ -406,14 +409,14 @@ label.error {
 #desktopOnly {
   display: none
 }
-/* header {
+.desktopHeader {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
   z-index: 1
-} */
+}
 header.homepage .wrapper .topBubbles {
   display: block;
   position: absolute;

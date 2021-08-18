@@ -12,7 +12,7 @@ class ManagersStore{
         if(this.loading || this.loadingEnd) return;
         this.loading = true;
         const newMngrs = await ManagersApi.load(this.list);
-        if(!newMngrs.length) this.loadingEnd = true
+        if(newMngrs && !newMngrs.length) this.loadingEnd = true
         this.loading = false;
     }
     delete(id){

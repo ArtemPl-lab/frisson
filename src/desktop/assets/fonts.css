@@ -1,0 +1,5 @@
+@font-face {
+    font-family: Miratrix-Normal;
+    src: url(./fonts/Miratrix-Normal.eot);
+    src: url(./fonts/Miratrix-Normal.eot?#iefix) format("embedded-opentype"), url(./fonts/Miratrix-Normal.svg#Miratrix-Normal) format("svg"), url(./fonts/Miratrix-Normal.ttf) format("truetype"), url(./fonts/Miratrix-Normal.woff) format("woff"), url(./fonts/Miratrix-Normal.woff2) format("woff2")
+}
