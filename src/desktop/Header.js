@@ -21,14 +21,14 @@ const Header = ({ homepage }) => {
                         <p>Назад</p>
                     </div>
                     
-                    <NavLink to="/" className="logo">
+                    <NavLink exact to="/" className="logo">
                         <img src={whiteLogo} alt="" className="white" />
                         <img src={blueLogo} alt="" className="blue" />
                     </NavLink>
                     <div className="menu">
                         <ul>
-                            <li><NavLink to="/about" activeClassName="active">О приложении</NavLink></li>
-                            <li><NavLink to="/help" activeClassName="active">Помощь</NavLink></li>
+                            <li><NavLink exact to="/about" activeClassName="active">О приложении</NavLink></li>
+                            <li><NavLink exact to="/help" activeClassName="active">Помощь</NavLink></li>
                         </ul>
                     </div>
                 </div>

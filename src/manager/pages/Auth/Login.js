@@ -19,15 +19,15 @@ export const Login = props => {
             [e.target.name]: e.target.value
         }));
     }
-    const onSubmit = async  e => {
+    const onSubmit = async e => {
         e.preventDefault();
         setLoad(true);
         await manager.auth(state);
         setLoad(false);
     }
-    if(load) return <Load />
-    if(manager.data) return <Redirect to="/places"/>
-    return(
+    if (load) return <Load />
+    if (manager.data) return <Redirect to="/places" />
+    return (
         <>
             <Header />
             <section id="enter" className={`${styles.fullscreen} ${styles.formPage}`}>
@@ -35,20 +35,20 @@ export const Login = props => {
                     <h2>Вход в личный кабинет Frisson</h2>
                     <form onSubmit={onSubmit}>
                         <div className={styles.formGroup}>
-                            <input 
-                                type="text" 
-                                name="manager_id" 
-                                placeholder="+7 999 999 99 99" 
-                                className={styles.phoneMask} 
-                                onChange={handleChange} 
+                            <input
+                                type="text"
+                                name="manager_id"
+                                placeholder="+7 999 999 99 99"
+                                className={styles.phoneMask}
+                                onChange={handleChange}
                                 value={state.manager_id}
                             />
                         </div>
                         <div className={styles.formGroup}>
-                            <input 
-                                type="password" 
-                                name="password" 
-                                placeholder="Пароль" 
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Пароль"
                                 onChange={handleChange}
                                 value={state.password}
                             />
