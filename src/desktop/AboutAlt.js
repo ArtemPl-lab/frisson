@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import DesktopOnly from './DesktopOnly'
 import Header from './Header'
-import bgAbout from './assets/img/bg-about.png'
+import bgAbout from './assets/img/bg-about-var.png'
 import aboutPhones from './assets/img/about-phones.png'
 import aboutPhone1 from './assets/img/about-phone-1.png'
 import aboutPhone2 from './assets/img/about-phone-2.png'
@@ -16,7 +16,7 @@ import 'swiper/components/pagination/pagination.min.css'
 
 SwiperCore.use([Navigation, Pagination])
 
-const About = () => {
+const AboutAlt = () => {
 
     const prevRef = useRef(null)
     const nextRef = useRef(null)
@@ -30,7 +30,7 @@ const About = () => {
     return (
         <>
             <Header />
-            <section id="about">
+            <section id="about" className="alt">
                 <div className="container">
                     <div className="upper">
                         <div className="row">
@@ -179,4 +179,4 @@ const About = () => {
     )
 }
 
-export default About
+export default AboutAlt

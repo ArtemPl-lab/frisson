@@ -8,7 +8,7 @@ import { StoreProvider as ManagerStore } from './manager/store';
 import HomePage from './desktop/HomeAlt';
 import './index.css';
 import { ScrollToTop } from './common';
-import About from './desktop/About';
+import About from './desktop/AboutAlt';
 
 ReactDOM.render(
     <React.StrictMode>

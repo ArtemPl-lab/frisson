@@ -751,7 +751,8 @@ header .wrapper .menu ul li a.active {
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center
+  align-items: center;
+  cursor: pointer
 }
 #about .upper .down p {
   margin-right: 8px;
