@@ -27,8 +27,8 @@ const Header = ({ homepage }) => {
                     </NavLink>
                     <div className="menu">
                         <ul>
-                            <li><NavLink to="/about">О приложении</NavLink></li>
-                            <li><NavLink to="/help">Помощь</NavLink></li>
+                            <li><NavLink to="/about" activeClassName="active">О приложении</NavLink></li>
+                            <li><NavLink to="/help" activeClassName="active">Помощь</NavLink></li>
                         </ul>
                     </div>
                 </div>

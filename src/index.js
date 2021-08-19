@@ -8,6 +8,7 @@ import { StoreProvider as ManagerStore } from './manager/store';
 import HomePage from './desktop/HomeAlt';
 import './index.css';
 import { ScrollToTop } from './common';
+import About from './desktop/About';
 
 ReactDOM.render(
     <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.render(
                 <BrowserRouter>
                     <ScrollToTop />
                     <Route path="/" exact component={HomePage}/>
+                    <Route path="/about" exact component={About}/>
                     <Route path="/manager/*" component={Manager}/>
                     <Route path="/admin/*" component={Admin}/>
                 </BrowserRouter>

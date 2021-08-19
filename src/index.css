@@ -494,7 +494,7 @@ header .wrapper .menu ul {
 header .wrapper .menu ul li:not(:first-child) {
   margin-left: 40px
 }
-header .wrapper .menu ul li.active a {
+header .wrapper .menu ul li a.active {
   font-weight: 800
 }
 .fullscreen {
@@ -766,6 +766,9 @@ header .wrapper .menu ul li.active a {
   right: -21vw;
   top: -225px
 }
+#about .sliderContainer {
+  position: relative
+}
 #about .aboutSlider {
   position: relative;
   width: 100%;
@@ -803,27 +806,33 @@ header .wrapper .menu ul li.active a {
   left: -25px;
   top: -5px
 }
-#about .aboutSlider .nav {
+#about .nav {
   position: absolute;
   z-index: 1;
   bottom: 90px;
-  left: 0
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex
 }
-#about .aboutSlider .nav .navBtn svg path {
+#about .nav .navBtn {
+  cursor: pointer
+}
+#about .nav .navBtn svg path {
   -webkit-transition: fill .3s ease;
   -o-transition: fill .3s ease;
   transition: fill .3s ease
 }
-#about .aboutSlider .nav .navBtn.swiper-button-disabled {
+#about .nav .navBtn.swiper-button-disabled {
   pointer-events: none
 }
-#about .aboutSlider .nav .navBtn.swiper-button-disabled svg path {
+#about .nav .navBtn.swiper-button-disabled svg path {
   fill: #d5e2e8
 }
-#about .aboutSlider .nav #prev {
+#about .nav #prev {
   margin-right: 48px
 }
-#about .aboutSlider .pagination {
+#about .pagination {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
