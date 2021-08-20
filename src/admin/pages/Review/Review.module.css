@@ -4,3 +4,24 @@
     box-sizing: border-box;
     padding: 40px 60px;
 }
+.stars_title{
+    font-family: 'M PLUS 1p', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    font-feature-settings: 'ss02' on, 'ss09' on;
+    color: #96A4AE;
+    margin-bottom: 14px;
+    margin-top: 40px;
+}
+.text_title{
+    font-family: 'M PLUS 1p', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 20px;
+    color: #8798AD;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}

@@ -4,22 +4,16 @@ import { Content, Headline, NewImage } from "../../components";
 import { useStore } from "../../store";
 import api from '../../api';
 import { Load } from '../Load';
-import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import Toggle from '../../components/Toggle/Toggle';
 
 export const PlaceGallery = observer(props => {
     const { id } = useParams();
     const { places } = useStore();
     const loadFile = e => {
-        const fd = new FormData();
-        fd.append('photos', e.target.files[0]);
-        api.post(`/managers/places/${places.current.id}/images`, {}, fd)
+        // e.preventDefault();
+        console.log(e.target.files);
+        places.loadImageFromGallery(e.target.files[0]);
     }
-    // useEffect(() => {
-    //     if(places.current) places.current.image_ids.forEach(el => api.get(`/images/${el}`));
-        
-    // }, [places.current]);
     if(!places.current) return <Load />
     return(
         <Content>
@@ -44,14 +38,14 @@ export const PlaceGallery = observer(props => {
             </div>
             <div className={styles.images_grid}>
                 {
-                    places.current.image_ids.map(el => {
+                    places.current.image_ids.map((el, index) => {
                         return(
-                            <div className={styles.image_card}>
+                            <div className={styles.image_card} key={index}>
                                 <div className={styles.lbl}>
                                     Фото
                                 </div>
                                 <img src={`${api.address}/images/${el}`} />
-                                <div className={styles.bulk}>
+                                <div className={styles.bulk} onClick={()=>places.removeImageFromGallery(el)}>
                                     Удалить фотографию
                                 </div>
                             </div>
@@ -62,7 +56,7 @@ export const PlaceGallery = observer(props => {
                     <div className={styles.lbl}>
                         Добавить
                     </div>
-                    <NewImage onChange={loadFile}/>
+                    <NewImage onChange={loadFile} height="286px"/>
                 </div>
             </div>
         </Content>

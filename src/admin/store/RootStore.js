@@ -1,4 +1,4 @@
-import ActivitiesStore from "./ActivitiesStore";
+import DirectionsStore from "../../manager/store/DirectionsStore";
 import AdminStore from "./AdminStore";
 import ChangesStore from "./ChangesStore";
 import ManagersStore from "./ManagersStore";
@@ -9,7 +9,7 @@ class RootStore{
         this.admin = new AdminStore(this);
         this.managers = new ManagersStore(this);
         this.tags = new TagsStore(this);
-        this.activities = new ActivitiesStore(this);
+        this.directions = new DirectionsStore(this);
         this.changes = new ChangesStore(this);
         this.load = this.init();
     }
@@ -17,7 +17,7 @@ class RootStore{
         await this.admin.init();
         await this.managers.init();
         await this.tags.init();
-        await this.activities.init();
+        await this.directions.init();
         await this.changes.init();
     }
 }

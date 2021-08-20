@@ -101,7 +101,7 @@ export const UserPage = observer(props => {
             }
         });
     }
-    if(loading) return <Load />
+    // if(loading) return <Load />
     return(
         <div className={styles.wrapper}>
             <ComeBack />

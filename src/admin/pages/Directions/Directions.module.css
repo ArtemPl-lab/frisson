@@ -12,3 +12,47 @@
     color: #96A4AE;
     margin-top: 40px;
 }
+.wrapper{
+
+}
+.direction_name{
+    font-family: 'M PLUS 1p', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    font-feature-settings: 'ss02' on, 'ss09' on;
+    color: #96A4AE;
+    margin-bottom: 16px;
+}
+.direction_types_label{
+    font-family: 'M PLUS 1p', sans-serif;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    font-feature-settings: 'ss02' on, 'ss09' on;
+    color: #96A4AE;
+}
+.direction_types{
+
+}
+.type_wrapper{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.bulk_type{
+    font-family: 'M PLUS 1p', sans-serif;
+    margin-left: 15px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    font-feature-settings: 'ss02' on, 'ss09' on;
+    color: #FC3B2D;
+}

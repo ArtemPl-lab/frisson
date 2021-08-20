@@ -1,0 +1,50 @@
+.tabs_list{
+    display: flex;
+}
+.tab{
+    font-family: 'M PLUS 1p', sans-serif;
+    display: block;
+    position: relative;
+    outline: none;
+    border: none;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    font-feature-settings: 'ss02' on, 'ss09' on;
+    color: #96A4AE;
+    padding-bottom: 17px;
+    margin-right: 70px;
+    padding-left: 0;
+    padding-right: 90px;
+    background: transparent;
+    cursor: pointer;
+    flex-basis: inherit;
+}
+.tab::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #DDDDDD;
+    border-radius: 10px;
+    opacity: 0;
+    transition: .3s;
+}
+.tab.active{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    font-feature-settings: 'ss02' on, 'ss09' on;
+    color: #0E2F56;
+    
+}
+.tab.active::after{
+    opacity: 1;
+}
+.tab_content{
+    margin-top: 30px;
+}

@@ -1,11 +1,10 @@
-import { Route, Redirect } from "react-router-dom"
+import { Route, Redirect, Switch } from "react-router-dom"
 import { Navigation } from "./components";
 import * as Pages from './pages';
 
 export const BaseRoutes = props => {
     return(
-        <>
-            {/* <Redirect to="/users" /> */}
+        <Switch>
             <Route path="/users" exact >
                 <Navigation />
                 <Pages.UsersList />
@@ -20,16 +19,15 @@ export const BaseRoutes = props => {
                 <Navigation />
                 <Pages.Directions />
             </Route>
-            {/* <Route render={() => <Redirect to="/users" />} /> */}
-        </>
+            <Route render={() => <Redirect to="/users" />} />
+        </Switch>
     );
 }
 export const AuthRoutes = props => {
     return(
-        <>
-            {/* <Redirect to="/login" /> */}
+        <Switch>
             <Route path="/login" component={Pages.Login} />
-            {/* <Route render={() => <Redirect to="/login" />} /> */}
-        </>
+            <Route render={() => <Redirect to="/login" />} />
+        </Switch>
     );
 }

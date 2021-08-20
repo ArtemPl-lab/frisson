@@ -36,3 +36,12 @@
 .bulk:hover{
     opacity: .8;
 }
+.generate_pass{
+    font-family: 'M PLUS 1p', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 20px;
+    color: #38A466;
+    margin-top: -10px;
+}

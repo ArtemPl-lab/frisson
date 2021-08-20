@@ -71,3 +71,33 @@
     color: #FFFFFF;
     z-index: 3;
 }
+.dark_bg{
+    background: #0E2F56;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.disable_text{
+    font-family: 'M PLUS 1p', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #D5E2E8;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    max-width: 80%;
+    z-index: 4;
+}
+.disable_text a{
+    color: #38A466;
+    transition: .3s;
+}
+.disable_text a:hover{
+    color: #38A466;
+    opacity: .8;
+}

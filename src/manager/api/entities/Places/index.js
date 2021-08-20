@@ -11,5 +11,25 @@ class PlacesApi{
     static async getPlace(id){
         return await PlacesServerApi.getPlace(id);
     }
+    static async getReviews(place){
+        const reviews = await PlacesServerApi.getReviews(place.id);
+        PlacesLocalApi.getReviews(place, reviews);
+    }
+    static async getFrissonReview(place){
+        const review = await PlacesServerApi.getFrissonReview(place.id);
+        PlacesLocalApi.getFrissonReview(place, review);
+    }
+    static async loadImageFromGallery(place, file){
+        const imageId = await PlacesServerApi.loadImageFromGallery(place.id, file);
+        PlacesLocalApi.loadImageFromGallery(place, imageId);
+    }
+    static async removeImageFromGallery(place, imageId){
+        PlacesLocalApi.removeImageFromGallery(place, imageId);
+        await PlacesServerApi.updatePlace(place);
+    }
+    static async update(prev, next){
+        PlacesLocalApi.updatePlace(prev, next);
+        await PlacesServerApi.updatePlace(next);
+    }
 }
 export default PlacesApi;

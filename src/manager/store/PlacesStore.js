@@ -9,6 +9,7 @@ class PlacesStore{
         makeAutoObservable(this);
     }
     async getPlace(id){
+        this.loadind = true;
         if(id === 'new') {
             this.current = {
                 "city_id":1,
@@ -36,18 +37,29 @@ class PlacesStore{
                 "badges":["new"],
                 "created_at":"2021-08-04",
                 "discounts":[{"name":"Больше вкуса!","short_description":"Бесплатный кофе по выходным","full_description":"Каждый год мы стараемся привлечь как можно больше клиентов и зачем резкое снижение количества клиентов по выходным, поэтому решили провести такую акцию","id":17,"image_id":1285},{"name":"Море радости","short_description":"Досуг для детей по высокой скидке","full_description":"Не знаете, чем занять детей? Пока вы отдыхаете, мы присмотрим за ними! Профессиональные аниматоры будут развлекать вашего ребенка часами!","id":18,"image_id":1285}],"amenities":[{"name":"Вход для одного человека","description":"В стоимость входит посещение заведения для одного человека, прокат самоката на 30 минут и обед в местном кафе за счет сервиса","cost_value":1500,"cost_currency":"₽","id":684},{"name":"Вход для семьи","description":"В стоимость входит билет в заведение для всей семьи, бесплатная экскурсия по месту и выделенный фотограф. Стоимость фотоальбома рекомендуем уточнить, связавшись с нами","cost_value":3470,"cost_currency":"₽","id":685}]};
+                this.loadind = false;
             return;
         };
-        this.loadind = true;
         const data = await PlacesApi.getPlace(id);
         this.current = data;
+        await PlacesApi.getReviews(this.current);
+        await PlacesApi.getFrissonReview(this.current);
         this.loadind = false;
     }
     load(){
         return PlacesApi.load(this.list);
     }
-    init(){
-        return this.load();
+    loadImageFromGallery(file){
+        return PlacesApi.loadImageFromGallery(this.current, file)
+    }
+    removeImageFromGallery(imageId){
+        return PlacesApi.removeImageFromGallery(this.current, imageId);
+    }
+    update(place){
+        return PlacesApi.update(this.current, place);
+    }
+    async init(){
+        this.load();
     }
 }
 

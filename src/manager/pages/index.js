@@ -3,3 +3,4 @@ export * from './Places';
 export * from './LogoutConfirm';
 export * from './Settings';
 export  * from './ConfirmPhone';
+export * from './DeleteConfirm';

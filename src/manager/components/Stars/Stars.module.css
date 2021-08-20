@@ -1,0 +1,6 @@
+.stars{
+    display: flex;
+}
+.stars svg{
+    margin-right: 8px;
+}

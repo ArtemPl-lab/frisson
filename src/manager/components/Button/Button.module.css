@@ -21,3 +21,15 @@
     background: #38A466;
     border-radius: 4px;
 }
+.btn.stroke{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 21px;
+    color: #0E2F56;
+    border: 1px solid #96A4AE;
+    border-radius: 4px;
+}
+.btn.stroke svg{
+    margin-right: 8px;
+}

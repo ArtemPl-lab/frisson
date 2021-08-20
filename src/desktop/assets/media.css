@@ -11,7 +11,7 @@
   @media screen and (max-width:1230px) {
     body,
     html {
-      overflow: hidden
+      overflow: visible
     }
     #desktopOnly {
       display: -webkit-box !important;

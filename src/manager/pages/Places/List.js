@@ -1,9 +1,10 @@
+import { observer } from 'mobx-react-lite';
 import { Link, useLocation } from 'react-router-dom';
 import { PlaceCard } from '../../components/PlaceCard';
 import { useStore } from '../../store';
 import styles from './Places.module.css';
 
-export const PlacesList = props => {
+export const PlacesList = observer(props => {
     const { manager, places } = useStore();
     const location = useLocation();
     return(
@@ -48,4 +49,4 @@ export const PlacesList = props => {
             </div>
         </div>
     );
-}
+});
