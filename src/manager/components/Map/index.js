@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { FullscreenControl, Map, Placemark, withYMaps } from "react-yandex-maps";
 
 export const SelectMap = withYMaps(props => {
-    console.log(props);
+    // console.log(props);
     const [state, setState] = useState({
         coords: props.coords || [55.751574, 37.573856],
         iconCaption: 'поиск...',

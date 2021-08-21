@@ -58,6 +58,9 @@ class PlacesStore{
     update(place){
         return PlacesApi.update(this.current, place);
     }
+    create(data){
+        return PlacesApi.create(data);
+    }
     async init(){
         this.load();
     }

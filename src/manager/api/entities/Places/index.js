@@ -31,5 +31,8 @@ class PlacesApi{
         PlacesLocalApi.updatePlace(prev, next);
         await PlacesServerApi.updatePlace(next);
     }
+    static create(data){
+        return PlacesServerApi.create(data);
+    }
 }
 export default PlacesApi;

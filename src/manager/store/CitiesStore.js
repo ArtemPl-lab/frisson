@@ -10,7 +10,6 @@ class CitiesStore{
         const res = await api.get('/cities');
         if(res.ok){
             this.list = await res.json();
-            console.log(this.list);
         }
     }
 }

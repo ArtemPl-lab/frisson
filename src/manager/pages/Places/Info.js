@@ -105,14 +105,21 @@ export const PlaceInfo = observer(props => {
 
     const handleChange = e => {
         setState(prev => {
-            changes.add(`update_place_${id}`, ()=>places.update({
+            const res = {
                 ...prev,
                 [e.target.name]: e.target.value 
-            }));
-            return({
-                ...prev,
-                [e.target.name]: e.target.value 
-            });
+            };
+            if(id === 'new'){
+                if(state.name && state.phones && state.phones.length && state.description && state.city_id && state.address){
+                    changes.add(`create_place`, async ()=>{
+                        const { place_id } = await places.create(res);
+                        history.push(`/places/${place_id}/info`);
+                    });
+                }
+            } else {
+                changes.add(`update_place_${id}`, ()=>places.update(res));
+            }
+            return res;
         });
     }
     const addPhone = () => {
@@ -132,7 +139,16 @@ export const PlaceInfo = observer(props => {
                 ...prev,
                 phones: prev.phones.map((el, ind) => index === ind ? e.target.value : el)
             };
-            changes.add(`update_place_${id}`, () => places.update(res));
+            if(id === 'new'){
+                if(res.name && res.phones && res.phones.length && res.description && res.city_id && res.address){
+                    changes.add(`create_place`, async ()=>{
+                        const { place_id } = await places.create(res);
+                        history.push(`/places/${place_id}/info`);
+                    });
+                }
+            } else {
+                changes.add(`update_place_${id}`, ()=>places.update(res));
+            }
             return res; 
         });
     }

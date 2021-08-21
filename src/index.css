@@ -32,7 +32,7 @@
   align-items: center !important;
   border-radius: 100% !important;
   background: #FFFFFF !important;
-  padding-bottom: 3px !important;
+  padding-bottom: 0px !important;
 }
 .react-dropdown-select-option-label{
   font-family: 'M PLUS 1p', sans-serif !important;
