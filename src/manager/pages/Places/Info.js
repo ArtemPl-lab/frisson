@@ -8,6 +8,8 @@ import { useStore } from "../../store";
 import { observer } from "mobx-react-lite";
 import Select from "react-dropdown-select";
 import api from "../../api";
+import InputMask from 'react-input-mask';
+
 
 const times = [
     {
@@ -190,7 +192,7 @@ export const PlaceInfo = observer(props => {
                     <div className={styles.info__label}>
                         Основная информация
                     </div>
-                    <Input value={state.name} name="name" onChange={handleChange}/>
+                    <Input value={state.name} name="name" onChange={handleChange} placeholder="Название активности"/>
                     {/* <Input value={state.activity_type_id} name="activity_type_id" onChange={handleChange}/> */}
                     <select 
                         onChange={handleChange} 
@@ -263,6 +265,7 @@ export const PlaceInfo = observer(props => {
                     <Input 
                         value={state.address} 
                         name="address" 
+                        placeholder="Адрес активности"
                         onChange={handleChange}
                     />
                     <SelectMap 
@@ -277,14 +280,30 @@ export const PlaceInfo = observer(props => {
                     <div className={styles.info__label}>
                         Особенности
                     </div>
-                    <Input value={state.feature} name="feature" onChange={handleChange}/>
+                    <TextArea 
+                        style={{
+                            width: "337px",
+                            height: "206px"
+                        }}
+                        value={state.feature} 
+                        name="feature" 
+                        onChange={handleChange}
+                    />
                 </div>
                 <div>
                     <div className={styles.info__label}>
                         Контактная информация
                     </div>
                     {
-                        state.phones.map((phone, index) => <Input value={phone} key={index} onChange={(e)=>handlePhoneChange(index, e)}/>)
+                        state.phones.map((phone, index) => {
+                            return(
+                                <InputMask mask="+7(999) 999-99-99" value={phone} key={index} onChange={(e)=>handlePhoneChange(index, e)}>
+                                    {
+                                        (inputProps) => <Input {...inputProps}/>
+                                    }
+                                </InputMask>
+                            );
+                        })
                     }
                     <Button color="stroke" onClick={addPhone}>
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -303,6 +322,7 @@ export const PlaceInfo = observer(props => {
                             value={state.site_web} 
                             name="site_web" 
                             onChange={handleChange}
+                            placeholder="Ссылка на ваш вебсайт"
                         />
                     </div>
                     <div className={styles.row}>
@@ -314,6 +334,7 @@ export const PlaceInfo = observer(props => {
                             value={state.site_facebook} 
                             name="site_facebook" 
                             onChange={handleChange}
+                            placeholder="Ссылка на facebook"
                         />
                     </div>
                     <div className={styles.row}>
@@ -325,6 +346,7 @@ export const PlaceInfo = observer(props => {
                             value={state.site_vk} 
                             name="site_vk" 
                             onChange={handleChange}
+                            placeholder="Ссылка на VK"
                         />
                     </div>
                     <div className={styles.row}>
@@ -337,6 +359,7 @@ export const PlaceInfo = observer(props => {
                             value={state.site_instagram} 
                             name="site_instagram" 
                             onChange={handleChange}
+                            placeholder="Ссылка на Instagram"
                         />
                     </div>
                     <div className={styles.row}>
@@ -348,6 +371,7 @@ export const PlaceInfo = observer(props => {
                             value={state.site_youtube} 
                             name="site_youtube" 
                             onChange={handleChange}
+                            placeholder="Ссылка на Youtube"
                         />
                     </div>
                     <div className={styles.row}>
@@ -359,6 +383,7 @@ export const PlaceInfo = observer(props => {
                             value={state.site_twitter} 
                             name="site_twitter" 
                             onChange={handleChange}
+                            placeholder="Ссылка на Twitter"
                         />
                     </div>
                     <br />

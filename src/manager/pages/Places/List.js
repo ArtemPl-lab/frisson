@@ -11,12 +11,21 @@ export const PlacesList = observer(props => {
         <div className={styles.wrapper}>
             <header className={styles.header}>
                 <div className={styles.info}>
-                    <div className={styles.id}>
-                        id: {manager.data.id}
+                    <div>
+                        <div className={styles.id}>
+                            id: {manager.data.id}
+                        </div>
+                        <div className={styles.username}>
+                            {manager.data.full_name}
+                        </div>
                     </div>
-                    <div className={styles.username}>
-                        {manager.data.full_name}
-                    </div>
+                    {
+                        manager.data.disabled_by_admin ?
+                        <div className={styles.disable_by_admin}>
+                            Ваш аккаунт отключен администратором. Для восстановления доступа напишите на почту <a href="mailto:admin@frissonapp.com">admin@frissonapp.com</a>
+                        </div> :
+                        ''
+                    }
                 </div>
                 <div className={styles.actions}>
                     <Link className={styles.action} to="/settings">

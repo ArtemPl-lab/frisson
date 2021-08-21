@@ -77,7 +77,7 @@ export const Directions = observer(props => {
                 <div className={styles.wrapper}>
                     <br />
                     {
-                        directions.list.map(direction => {
+                        directions.list.reduceRight((prev, curr) => [...prev, curr], []).map(direction => {
                             return(
                                 <div className={styles.direction}>
                                     <div className={styles.direction_name}>

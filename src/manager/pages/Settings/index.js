@@ -4,6 +4,7 @@ import { useStore } from '../../store';
 import { generate } from 'generate-password';
 import styles from './Settings.module.css';
 import { useHistory } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 
 export const Settings = observer(props => {
     const { manager } = useStore();
@@ -40,14 +41,13 @@ export const Settings = observer(props => {
                     [e.target.name]: e.target.value
                 })}
             />
-            <Input 
-                placeholder="Номер телефона"
-                value={manager.data.phone}
-                name="phone"
-                onChange={(e) => manager.update({
+            <InputMask mask="+7(999) 999-99-99" value={manager.data.phone} onChange={(e) => manager.update({
                     [e.target.name]: e.target.value
-                })}
-            />
+                })} name="phone">
+                {
+                    (inputProps) => <Input placeholder="Номер телефона"  name="phone" {...inputProps}/>
+                }
+            </InputMask>
             <Input 
                 value={manager.data.email}
                 name="email"

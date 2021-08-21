@@ -10,11 +10,8 @@ import { useState } from 'react';
 
 export const UsersList = observer(props => {
     const { managers } = useStore();
-    const [search, setSearchVal] = useState();
+    const [search, setSearchVal] = useState('');
     const { ref, inView} = useInView({ threshold: 0 });
-    console.log(inView);
-    console.log(managers.loading);
-    console.log(managers.loadingEnd);
     if(inView && !managers.loading && !managers.loadingEnd){
         managers.load();
     }
@@ -52,6 +49,8 @@ export const UsersList = observer(props => {
             />
             <div className={styles.cards}>
                 {
+                    managers.searched && managers.list.length ?
+                    <ManagerCard {...managers.list[0]}/> :
                     managers.list.map(manager => <ManagerCard {...manager}/>)
                 }
             </div>

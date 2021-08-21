@@ -5,6 +5,7 @@ class ManagersStore{
     list = [];
     loading = false;
     loadingEnd = false;
+    searched = false;
     constructor(){
         makeAutoObservable(this);
     }
@@ -29,8 +30,10 @@ class ManagersStore{
     search(query){
         if(query === '') {
             this.init();
+            this.searched = false;
             return;
         }
+        this.searched = true;
         return ManagersApi.search(this.list, query);
     }
     async init(){

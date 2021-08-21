@@ -8,6 +8,7 @@ import { Load } from '../Load';
 import styles from './User.module.css';
 import { observer } from 'mobx-react-lite';
 import { ActivityCard } from '../../components/ActivityCard';
+import InputMask from 'react-input-mask';
 
 const getManagerToken = async (id) => {
     const res = await api.get(`/admins/managers/${id}/token`);
@@ -80,10 +81,10 @@ export const UserPage = observer(props => {
             };
             if(res.full_name) changes.add(`change_usr${id}`, async () => {
                 if(id !== 'new'){
-                    api.patch(`/admins/managers/${id}`, state);
+                    api.patch(`/admins/managers/${id}`, res);
                 }
                 else {
-                    registerUser(state);
+                    registerUser(res);
                 }
             });
             else changes.remove(`change_usr${id}`);
@@ -123,7 +124,11 @@ export const UserPage = observer(props => {
             <div className={styles.info__grid}>
                 <Input placeholder="Имя Фамилия / Название компании" onChange={handleChange} name="full_name" value={state.full_name}/>
                 <Input placeholder="Почта" onChange={handleChange}  name="email" value={state.email}/>
-                <Input placeholder="Номер телефона" onChange={handleChange} name="phone" value={state.phone}/>
+                <InputMask mask="+7(999) 999-99-99" value={state.phone} onChange={handleChange} name="phone">
+                    {
+                        (inputProps) => <Input placeholder="Номер телефона"  name="phone" {...inputProps}/>
+                    }
+                </InputMask>
                 <div>
                     <Input placeholder="Пароль" onChange={handleChange} name="password" value={state.password}/>
                     <div className={styles.generate} onClick={generatePassword}>
