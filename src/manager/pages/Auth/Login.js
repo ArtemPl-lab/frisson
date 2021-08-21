@@ -42,6 +42,7 @@ export const Login = props => {
                                 className={styles.phoneMask}
                                 onChange={handleChange}
                                 value={state.manager_id}
+                                className={styles.input}
                             />
                         </div>
                         <div className={styles.formGroup}>
@@ -51,6 +52,7 @@ export const Login = props => {
                                 placeholder="Пароль"
                                 onChange={handleChange}
                                 value={state.password}
+                                className={styles.input}
                             />
                         </div>
                         <div className={styles.checkbox}>

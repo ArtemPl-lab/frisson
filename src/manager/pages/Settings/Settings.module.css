@@ -44,4 +44,9 @@
     line-height: 20px;
     color: #38A466;
     margin-top: -10px;
+    cursor: pointer;
+    transition: .3s;
+}
+.generate_pass:hover{
+    opacity: .8;
 }

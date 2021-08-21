@@ -237,3 +237,10 @@
     color: #FC3B2D;
     opacity: .8;
 }
+.time_grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+    margin-bottom: 10px;
+    max-width: 338px;
+}

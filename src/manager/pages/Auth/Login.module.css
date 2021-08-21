@@ -11338,7 +11338,7 @@ a:hover {
   position: relative;
   margin-bottom: 28px
 }
-input:not([type=checkbox]) {
+.input:not([type=checkbox]) {
   width: 337px;
   height: 48px;
   background: #fff;
@@ -11351,6 +11351,7 @@ input:not([type=checkbox]) {
   padding-left: 24px;
   padding-right: 24px
 }
+/*
 input:not([type=checkbox])::-webkit-input-placeholder {
   opacity: 1;
   color: #5f819d
@@ -11373,7 +11374,7 @@ input:not([type=checkbox])::placeholder {
 }
 input:not([type=checkbox]).error {
   border-color: #fc3b2d
-}
+} */
 input[type=checkbox] {
   -webkit-appearance: none;
   -moz-appearance: none;

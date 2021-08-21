@@ -1,4 +1,4 @@
-import DirectionsStore from "../../manager/store/DirectionsStore";
+import DirectionsStore from "./DirectionsStore";
 import AdminStore from "./AdminStore";
 import ChangesStore from "./ChangesStore";
 import ManagersStore from "./ManagersStore";

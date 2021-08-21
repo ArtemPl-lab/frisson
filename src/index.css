@@ -1,6 +1,66 @@
 @import "./desktop/assets/fonts.css";
 @import "../node_modules/bootstrap/dist/css/bootstrap-grid";
-
+.react-dropdown-select{
+  border: 1px solid #96A4AE !important;
+  box-sizing: border-box !important;
+  border-radius: 5px !important;
+  /* padding: 10px 24px !important; */
+  font-family: 'M PLUS 1p', sans-serif !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-size: 19px !important;
+  line-height: 20px !important;
+  max-width: 338px !important;
+  /* height: 40px !important;
+  display: block !important; */
+  color: #031523 !important;
+  position: relative;
+  background: url(./manager/images/select.svg) no-repeat right 10px center;
+}
+.css-wmw4vi-ReactDropdownSelect:focus, .css-wmw4vi-ReactDropdownSelect:focus-within{
+  box-shadow: none !important;
+}
+.react-dropdown-select-dropdown-handle{
+  display: none;
+}
+.react-dropdown-select-option-remove{
+  color: #031523 !important;
+  height: 16px !important;
+  width: 16px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  border-radius: 100% !important;
+  background: #FFFFFF !important;
+  padding-bottom: 3px !important;
+}
+.react-dropdown-select-option-label{
+  font-family: 'M PLUS 1p', sans-serif !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-size: 15px !important;
+  line-height: 20px !important;
+  color: #FFFFFF !important;
+  margin-right: 10px;
+}
+.react-dropdown-select-option{
+  background: #0E2F56 !important;
+  border-radius: 5px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 8px 16px !important;
+}
+.react-dropdown-select-content span{
+  font-family: 'M PLUS 1p', sans-serif !important;
+  display: flex !important;
+  align-items: center !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-size: 15px !important;
+  line-height: 20px !important;
+  color: #031523;
+}
 a,
 abbr,
 acronym,
@@ -236,7 +296,7 @@ a:hover {
   position: relative;
   margin-bottom: 28px
 }
-input:not([type=checkbox]) {
+/* input:not([type=checkbox]) {
   width: 337px;
   height: 48px;
   background: #fff;
@@ -268,7 +328,7 @@ input:not([type=checkbox])::-ms-input-placeholder {
 input:not([type=checkbox])::placeholder {
   opacity: 1;
   color: #5f819d
-}
+} */
 input:not([type=checkbox]).error {
   border-color: #fc3b2d
 }

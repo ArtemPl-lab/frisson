@@ -6,10 +6,100 @@ import { Load } from "../Load";
 import Toggle from "../../components/Toggle/Toggle";
 import { useStore } from "../../store";
 import { observer } from "mobx-react-lite";
+import Select from "react-dropdown-select";
+import api from "../../api";
 
+const times = [
+    {
+        label: '00:00',
+        value: '00:00'
+    },
+    {
+        label: '01:00',
+        value: '01:00'
+    },
+    {
+        label: '02:00',
+        value: '02:00'
+    },
+    {
+        label: '03:00',
+        value: '03:00'
+    },
+    {
+        label: '04:00',
+        value: '04:00'
+    },
+    {
+        label: '05:00',
+        value: '05:00'
+    },
+    {
+        label: '06:00',
+        value: '06:00'
+    },
+    {
+        label: '07:00',
+        value: '07:00'
+    },
+    {
+        label: '08:00',
+        value: '08:00'
+    },
+    {
+        label: '09:00',
+        value: '09:00'
+    },
+    {
+        label: '10:00',
+        value: '10:00'
+    },
+    {
+        label: '11:00',
+        value: '11:00'
+    },    {
+        label: '12:00',
+        value: '12:00'
+    },    {
+        label: '13:00',
+        value: '13:00'
+    },
+    {
+        label: '14:00',
+        value: '14:00'
+    },    {
+        label: '15:00',
+        value: '15:00'
+    },    {
+        label: '16:00',
+        value: '16:00'
+    },
+    {
+        label: '17:00',
+        value: '17:00'
+    },    {
+        label: '18:00',
+        value: '18:00'
+    },    {
+        label: '19:00',
+        value: '19:00'
+    },    {
+        label: '20:00',
+        value: '20:00'
+    },    {
+        label: '21:00',
+        value: '21:00'
+    },  {
+        label: '22:00',
+        value: '22:00'
+    }, {
+        label: '23:00',
+        value: '23:00'
+    },
+];
 export const PlaceInfo = observer(props => {
     const { id } = useParams();
-    const { places, directions, changes } = useStore();
+    const { places, directions, changes, tags, cities} = useStore();
     const [state, setState] = useState(null);
     const history = useHistory();
 
@@ -42,7 +132,7 @@ export const PlaceInfo = observer(props => {
                 ...prev,
                 phones: prev.phones.map((el, ind) => index === ind ? e.target.value : el)
             };
-            changes.add(`update_place_${id}`, ()=>places.update(res));
+            changes.add(`update_place_${id}`, () => places.update(res));
             return res; 
         });
     }
@@ -57,6 +147,14 @@ export const PlaceInfo = observer(props => {
                     <div className={styles.disabled}>
                         <Toggle 
                             active={!(state.disabled_by_manager || state.disabled_by_admin)}
+                            onChange={(e) =>  {
+                                setState(prev => ({
+                                    ...prev,
+                                    disabled_by_manager: e.target.checked
+                                }))
+                                const ds = e.target.checked ? 'enabled' : 'disabled';
+                                api.post(`/managers/places/${state.id}/${ds}`);
+                            }}
                         />
                         <div className={styles.text}>
                         Ваш место активно
@@ -92,14 +190,31 @@ export const PlaceInfo = observer(props => {
                     <div className={styles.info__label}>
                         Теги
                     </div>
-                    <Tag />
-                    <Button color="stroke" onClick={addPhone}>
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="5" width="2" height="12" rx="1" fill="#0E2F56"/>
-                            <rect y="5" width="12" height="2" rx="1" fill="#0E2F56"/>
-                        </svg>
-                        Добавить тег
-                    </Button>
+                    <Select 
+                        multi
+                        options={
+                            tags.list.map(tag => ({
+                                label: tag.name,
+                                value: tag.id
+                            }))
+                        }
+                        values={state.search_tag_ids.map(tag_id => tags.list.find(el => el.id === tag_id)).map(tag => ({
+                            label: tag.name,
+                            value: tag.id
+                        }))}
+                        searchable={false}
+                        keepSelectedInList={false}
+                        dropdownGap={0}
+                        placeholder=""
+                        onChange={(values) => {
+                            handleChange({
+                                target: {
+                                    name: 'search_tag_ids',
+                                    value: values.map(val => val.value)
+                                }
+                            })
+                        }}
+                    />
                     <br />
                     <div className={styles.info__label}>
                         Описание
@@ -118,6 +233,17 @@ export const PlaceInfo = observer(props => {
                     <div className={styles.info__label}>
                         Как добраться
                     </div>
+                    <select 
+                        onChange={handleChange} 
+                        name="city_id" 
+                        value={state.city_id}
+                        className={styles.select}
+                    >
+                        {
+                            cities.list.map(city => <option value={city.id}>{city.name}</option>)
+                        }
+                    </select>
+                    <br />
                     <Input 
                         value={state.address} 
                         name="address" 
@@ -223,11 +349,197 @@ export const PlaceInfo = observer(props => {
                     <div className={styles.info__label}>
                         Время работы
                     </div>
+                    <div className={styles.time_grid}>
+                        <Select 
+                            placeholder="00:00"
+                            options={times}
+                            searchable={false}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                        <Select 
+                            placeholder="00:00"
+                            searchable={false}
+                            options={times}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                    </div>
+                    <div className={styles.time_grid}>
+                        <Select 
+                            placeholder="00:00"
+                            options={times}
+                            searchable={false}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                        <Select 
+                            placeholder="00:00"
+                            searchable={false}
+                            options={times}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                    </div>
+                    <div className={styles.time_grid}>
+                        <Select 
+                            placeholder="00:00"
+                            options={times}
+                            searchable={false}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                        <Select 
+                            placeholder="00:00"
+                            searchable={false}
+                            options={times}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                    </div>
+                    <div className={styles.time_grid}>
+                        <Select 
+                            placeholder="00:00"
+                            options={times}
+                            searchable={false}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                        <Select 
+                            placeholder="00:00"
+                            searchable={false}
+                            options={times}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                    </div>
+                    <div className={styles.time_grid}>
+                        <Select 
+                            placeholder="00:00"
+                            options={times}
+                            searchable={false}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                        <Select 
+                            placeholder="00:00"
+                            searchable={false}
+                            options={times}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                    </div>
+                    <div className={styles.time_grid}>
+                        <Select 
+                            placeholder="00:00"
+                            options={times}
+                            searchable={false}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                        <Select 
+                            placeholder="00:00"
+                            searchable={false}
+                            options={times}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                    </div>
+                    <div className={styles.time_grid}>
+                        <Select 
+                            placeholder="00:00"
+                            options={times}
+                            searchable={false}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                        <Select 
+                            placeholder="00:00"
+                            searchable={false}
+                            options={times}
+                            keepSelectedInList={false}
+                            dropdownGap={0}
+                            placeholder=""
+                            values={[{
+                                label: '00:00',
+                                value: '00:00'
+                            }]}
+                        />
+                    </div>
                 </div>
             </div>
-            <Link to={`${history.location.pathname}/confirm_delete_place`} className={styles.bulk_place}>
-                Удалить активность
-            </Link>
+            {
+                id !== 'new' ?
+                <Link to={`${history.location.pathname}/confirm_delete_place`} className={styles.bulk_place}>
+                    Удалить активность
+                </Link> :
+                ''
+            }
         </Content>
     );
 });

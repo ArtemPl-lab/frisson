@@ -33,6 +33,7 @@ export const UserPage = observer(props => {
         password: '',
         places: []
     });
+    const [search, setSearch] = useState('');
     const enable = (id, val) => {
         const newPlaces = state.places.map(place => {
             if(place.id === id)
@@ -139,10 +140,14 @@ export const UserPage = observer(props => {
                     {
                         state.places.length ?
                         <div className={styles.activity_search}>
-                            <Search placeholder="Поиск по названию или Уникальному номеру активности"/>
+                            <Search placeholder="Поиск по названию или Уникальному номеру активности" onChange={(e)=>setSearch(e.target.value)}/>
                             <div className={styles.places_grid}>
 
-                                    {state.places.map(place => <ActivityCard {...place} enable={enable}/>)}
+                                    {state.places.map(place => {
+                                        if(search === '' || place.id.toString().includes(search) || place.name.includes(search)){
+                                            return <ActivityCard {...place} enable={enable} />
+                                        }
+                                    })}
 
                             </div>
                         </div> :

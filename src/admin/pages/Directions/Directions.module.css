@@ -55,4 +55,14 @@
     align-items: center;
     font-feature-settings: 'ss02' on, 'ss09' on;
     color: #FC3B2D;
+    cursor: pointer;
+    transition: .3s;
+}
+.bulk_type:hover{
+    opacity: .8;
+}
+.select_wrapper{
+    position: relative;
+    width: 338px;
+    margin-top: 10px;
 }

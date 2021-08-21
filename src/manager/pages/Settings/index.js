@@ -64,9 +64,9 @@ export const Settings = observer(props => {
                 })}
             />
             <div className={styles.generate_pass} onClick={generatePassword}>Сгенерировать пароль</div>
-            <button onClick={handleSave}>
+            {/* <button onClick={handleSave}>
                 Подтвердить
-            </button>
+            </button> */}
             <div className={styles.bulk}>
                 Удалить аккаунт
             </div>

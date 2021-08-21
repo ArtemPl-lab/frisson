@@ -40,6 +40,7 @@ export const Register = observer(props => {
                                 name="full_name" 
                                 value={state.full_name}
                                 onChange={handleChange}
+                                className={styles.input}
                                 required
                             />
                         </div>
@@ -51,6 +52,7 @@ export const Register = observer(props => {
                                 name="phone" 
                                 value={state.phone}
                                 onChange={handleChange}
+                                className={styles.input}
                                 required
                             />
                         </div>
@@ -61,6 +63,7 @@ export const Register = observer(props => {
                                 name="email" 
                                 value={state.email}
                                 onChange={handleChange}
+                                className={styles.input}
                                 required
                             />
                         </div>
@@ -72,6 +75,7 @@ export const Register = observer(props => {
                                 name="password" 
                                 value={state.password}
                                 onChange={handleChange}
+                                className={styles.input}
                                 required
                             />
                         </div>
@@ -81,6 +85,7 @@ export const Register = observer(props => {
                                 placeholder="Повторите пароль" 
                                 name="confirm"
                                 pattern={state.password}
+                                className={styles.input}
                                 required
                             />
                         </div>
