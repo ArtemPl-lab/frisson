@@ -30,7 +30,10 @@ class API{
         }
         return fetch(query, {
             method: 'POST',
-            headers: this.authHeaders,
+            headers: {
+                ...this.authHeaders,
+                'Content-Type': 'application/json;charset=utf-8'
+            },
             body: body
         }); 
     }

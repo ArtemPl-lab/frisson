@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Button, Modal } from '../../components';
 import { useStore } from '../../store';
 import styles from './DeleteConfirm.module.css';
@@ -18,7 +18,10 @@ export const DeleteConfirm = props => {
                 <Button onClick={history.goBack}>
                     Оставить
                 </Button>
-                <Button color="red" onClick={()=>places.delete_current()}>
+                <Button color="red" onClick={async ()=>{ 
+                    await places.delete_current();
+                    history.push('/home');
+                }}>
                     Удалить
                 </Button>
             </div>

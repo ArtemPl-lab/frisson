@@ -1,4 +1,5 @@
 import { makeAutoObservable } from "mobx";
+import api from "../api";
 import PlacesApi from "../api/entities/Places";
 
 class PlacesStore{
@@ -15,29 +16,29 @@ class PlacesStore{
                 "city_id":1,
                 "name":"Новая активность",
                 "activity_type_id":4,
-                "search_tag_ids":[1],
+                "search_tag_ids":[],
                 "description":"",
-                "address":"просп. Ленинградский, д. 80, корп. 11",
+                "address":"Адрес активности",
                 "feature":"Оплата только наличными",
                 "latitude":55.22736761564399,
                 "longitude":37.17164476680282,
                 "phones":[],
-                "site_web":"https://example.com",
-                "site_facebook":"https://example.com",
-                "site_vk":"https://example.com",
-                "site_instagram":"https://example.com",
-                "site_youtube":"https://example.com",
-                "site_twitter":"https://example.com",
+                "site_web":"Ссылка на ваш вебсайт",
+                "site_facebook":"Ссылка на facebook",
+                "site_vk":"Ссылка на VK",
+                "site_instagram":"Ссылка на Instagram",
+                "site_youtube":"Ссылка на Youtube",
+                "site_twitter":"Ссылка на Twitter",
                 "work_time":"12:00-22:00 ежедневно",
-                "id":11,
-                "image_ids":[85,86,87,88,89,90,91,92,93,94],
+                "image_ids":[],
                 "rating_average":null,
                 "ratings_count":0,
                 "reviews":[],
                 "badges":["new"],
                 "created_at":"2021-08-04",
-                "discounts":[{"name":"Больше вкуса!","short_description":"Бесплатный кофе по выходным","full_description":"Каждый год мы стараемся привлечь как можно больше клиентов и зачем резкое снижение количества клиентов по выходным, поэтому решили провести такую акцию","id":17,"image_id":1285},{"name":"Море радости","short_description":"Досуг для детей по высокой скидке","full_description":"Не знаете, чем занять детей? Пока вы отдыхаете, мы присмотрим за ними! Профессиональные аниматоры будут развлекать вашего ребенка часами!","id":18,"image_id":1285}],"amenities":[{"name":"Вход для одного человека","description":"В стоимость входит посещение заведения для одного человека, прокат самоката на 30 минут и обед в местном кафе за счет сервиса","cost_value":1500,"cost_currency":"₽","id":684},{"name":"Вход для семьи","description":"В стоимость входит билет в заведение для всей семьи, бесплатная экскурсия по месту и выделенный фотограф. Стоимость фотоальбома рекомендуем уточнить, связавшись с нами","cost_value":3470,"cost_currency":"₽","id":685}]};
-                this.loadind = false;
+                "discounts":[]
+            };
+            this.loadind = false;
             return;
         };
         const data = await PlacesApi.getPlace(id);
@@ -60,6 +61,15 @@ class PlacesStore{
     }
     create(data){
         return PlacesApi.create(data);
+    }
+    delete_current(){
+        return this.delete(this.current.id);
+    }
+    async delete(id){
+        const res = await api.delete(`/managers/places/${id}`);
+        if(res.ok){
+            this.list = this.list.filter(el => el.id !== id);
+        }
     }
     async init(){
         this.load();

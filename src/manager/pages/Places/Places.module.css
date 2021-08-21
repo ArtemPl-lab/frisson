@@ -244,3 +244,24 @@
     margin-bottom: 10px;
     max-width: 338px;
 }
+.bulk{
+    font-family: 'M PLUS 1p', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    font-feature-settings: 'ss02' on, 'ss09' on;
+    color: #FC3B2D;
+    transition: .3s;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    width: fit-content;
+}
+.bulk:hover{
+    color: #FC3B2D;
+    opacity: .8;
+}
