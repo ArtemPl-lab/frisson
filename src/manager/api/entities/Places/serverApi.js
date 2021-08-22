@@ -53,7 +53,10 @@ class PlacesServerApi{
         await api.put(`/managers/places/${place.id}?${place.image_ids.map(el => `image_ids=${el}&`).join('')}`, {}, place);
     }
     static async create(data){
-        const res = await api.post(`/managers/places/`, {}, JSON.stringify(data));
+        const res = await api.post(`/managers/places/`, {}, JSON.stringify({
+            ...data,
+            work_time: JSON.stringify(data.work_time)
+        }));
         return (res.ok ? await res.json() : null);
     }
 }
