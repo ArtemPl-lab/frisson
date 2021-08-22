@@ -6,6 +6,7 @@ class ManagerStore{
     root
     token
     data = null;
+    update_callback = null;
     constructor(root){
         this.root = root;
         this.auth = this.auth.bind(this);
@@ -27,12 +28,15 @@ class ManagerStore{
         await ManagerApi.logout();
         await this.root.init();
     }
-    update(data){
+    update(data, history){
         this.data = {
             ...this.data,
             ...data
         }
-        this.root.changes.add(`managers_update`,() => api.patch('/managers', this.data));
+        this.root.changes.add(`managers_update`, ()=>new Promise((resolve, reject) => {
+            this.update_callback = resolve;
+            history.push(`${history.location.pathname}/confirm_phone/${this.data.phone}`);
+        }));
     }
     async init(){
         if(!localStorage.managerToken) {

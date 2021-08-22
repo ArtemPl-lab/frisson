@@ -12,19 +12,11 @@ export default observer(function(){
   const { changes } = useStore();
 
   return(
-        <BrowserRouter basename="/manager" getUserConfirmation={(message, callback) => {
-          const allowTransition = window.confirm(message);
-          if(allowTransition){
-            changes.save();
-          } else {
-            changes.clear();
-          }
-          callback(allowTransition);
-        }}>
-          <Prompt
+        <BrowserRouter basename="/manager" >
+          {/* <Prompt
             when={changes.hasChanges}
             message="Сохранить изменения?"
-          />
+          /> */}
           <ModalProvider>
             <Alert />
             <App />

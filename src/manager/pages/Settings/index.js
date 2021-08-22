@@ -19,7 +19,7 @@ export const Settings = observer(props => {
     }
     const handleSave = (e) => {
         // if(manager.data.phone){
-            history.push(`${history.location.pathname}/confirm_phone/+79055675532`);
+            history.replace(`${history.location.pathname}/confirm_phone/+79055675532`);
         // }
     }
     return(
@@ -39,11 +39,11 @@ export const Settings = observer(props => {
                 name="full_name"
                 onChange={(e) => manager.update({
                     [e.target.name]: e.target.value
-                })}
+                }, history)}
             />
             <InputMask mask="+7(999) 999-99-99" value={manager.data.phone} onChange={(e) => manager.update({
                     [e.target.name]: e.target.value
-                })} name="phone">
+                }, history)} name="phone">
                 {
                     (inputProps) => <Input placeholder="Номер телефона"  name="phone" {...inputProps}/>
                 }
@@ -53,7 +53,7 @@ export const Settings = observer(props => {
                 name="email"
                 onChange={(e) => manager.update({
                     [e.target.name]: e.target.value
-                })}
+                }, history)}
             />
             <Input 
                 value={manager.data.password}
@@ -61,9 +61,9 @@ export const Settings = observer(props => {
                 name="password"
                 onChange={(e) => manager.update({
                     [e.target.name]: e.target.value
-                })}
+                }, history)}
             />
-            <div className={styles.generate_pass} onClick={generatePassword}>Сгенерировать пароль</div>
+            <div className={styles.generate_pass} onClick={generatePassword}>Или сгенерировать пароль</div>
             {/* <button onClick={handleSave}>
                 Подтвердить
             </button> */}

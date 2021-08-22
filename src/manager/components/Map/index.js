@@ -12,18 +12,26 @@ export const SelectMap = withYMaps(props => {
         if(map){
             map.events.add('click', function (e) {
                 var coords = e.get('coords');
-                setState(prev => ({
-                    ...prev, 
-                    coords: coords
-                }));
+                setState(prev => {
+                    const res = {
+                        ...prev, 
+                        coords
+                    }
+                    props.onChange && props.onChange(coords);
+                    return res;
+                });
             });
         }
     }
     const handleDrag = e => {
-        setState(prev => ({
-            ...prev, 
-            coords: e.originalEvent.target.geometry.getCoordinates()
-        }));
+        setState(prev => {
+            const res = {
+                ...prev, 
+                coords: e.originalEvent.target.geometry.getCoordinates()
+            }
+            props.onChange && props.onChange(res.coords);
+            return res;
+        });
     }
     function getAddress(geocode) {
         if(!props.ymaps) return;
@@ -43,10 +51,6 @@ export const SelectMap = withYMaps(props => {
             }));
         });
     }
-    useEffect(() => {
-        props.onChange && props.onChange(state.coords);
-        // getAddress();
-    }, [state.coords]);
     return(
         <Map
             defaultState={{

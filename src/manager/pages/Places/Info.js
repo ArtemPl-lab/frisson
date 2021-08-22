@@ -99,12 +99,97 @@ const times = [
         value: '23:00'
     },
 ];
+const days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+const workTimeToString = (dayIndex, from, to) => {
+    return `${days[dayIndex]} ${from === '00:00' && to === '00:00' ? ' - не рабочий день' : `c ${from} до ${to}`}`;
+}
+const parseWorkTime = (index, string = "") => {
+    if(string.includes('не рабочий день')) return ({
+        from: '00:00',
+        to: '00:00'
+    });
+    let removedDayName = string.replace(days[index], '');
+    const removedPrepos = removedDayName.replace('c', '');
+    const removedSpaces = removedPrepos.split(' ').filter(str => str !== '').join('');
+    const times = removedSpaces.split('до');
+    if(times.length === 2){
+        return({
+            from: times[0],
+            to: times[1]
+        });
+    }
+    return ({
+        from: '00:00',
+        to: '00:00'
+    });
+}
+const TimeRow = props => {
+    const [state, setState] = useState(props.value);
+    return(
+        <div className={styles.time_grid}>
+        <Select 
+            placeholder="00:00"
+            options={times}
+            searchable={false}
+            keepSelectedInList={false}
+            dropdownGap={0}
+            placeholder=""
+            values={times.filter(el => el.value === state.from)}
+            onChange={([ item ]) => setState(prev => {
+                const res = {
+                    ...prev,
+                    from: item.value
+                }
+                props.onChange(res)
+                return res;
+
+            })}
+        />
+        <Select 
+            placeholder="00:00"
+            searchable={false}
+            options={times}
+            keepSelectedInList={false}
+            dropdownGap={0}
+            placeholder=""
+            values={times.filter(el => el.value === state.to)}
+            onChange={([ item ]) => setState(prev => {
+                const res = {
+                    ...prev,
+                    to: item.value
+                }
+                props.onChange(res)
+                return res;
+
+            })}
+        />
+    </div>
+    );
+}
 export const PlaceInfo = observer(props => {
     const { id } = useParams();
     const { places, directions, changes, tags, cities} = useStore();
     const [state, setState] = useState(null);
     const history = useHistory();
 
+    const handleTimeChange = (index, val) => {
+        const res = workTimeToString(index, val.from, val.to);
+        if(Array.isArray(state.work_time) && state.work_time.length === 7){
+            handleChange({
+                target: {
+                    name: 'work_time',
+                    value: state.work_time.map((_, ind) => ind === index ? res : _)
+                }
+            });
+        } else {
+            handleChange({
+                target: {
+                    name: 'work_time',
+                    value: Array.apply(0, new Array(7)).map((_, ind) => ind === index ? res : workTimeToString(ind, '00:00', '00:00'))
+                }
+            });
+        }
+    }
     const handleChange = e => {
         setState(prev => {
             const res = {
@@ -154,7 +239,26 @@ export const PlaceInfo = observer(props => {
             return res; 
         });
     }
-    
+    const handleMapChange = ([ latitude, longitude ]) => {
+        setState(prev => {
+            const res = {
+                ...prev,
+                latitude,
+                longitude
+            };
+            if(id === 'new'){
+                if(state.name && state.phones && state.phones.length && state.description && state.city_id && state.address){
+                    changes.add(`create_place`, async ()=>{
+                        const { id: place_id } = await places.create(res);
+                        history.push(`/places/${place_id}/info`);
+                    });
+                }
+            } else {
+                changes.add(`update_place_${id}`, ()=>places.update(res));
+            }
+            return res;
+        });
+    }
     useEffect(() => setState(places.current), [places.current]);
     if(!state || places.loading) return <Load />
     return(
@@ -270,6 +374,7 @@ export const PlaceInfo = observer(props => {
                     />
                     <SelectMap 
                         coords={[state.latitude, state.longitude]}
+                        onChange={handleMapChange}
                     />
                     {/* <TextArea style={{
                         width: "337px",
@@ -390,188 +495,13 @@ export const PlaceInfo = observer(props => {
                     <div className={styles.info__label}>
                         Время работы
                     </div>
-                    <div className={styles.time_grid}>
-                        <Select 
-                            placeholder="00:00"
-                            options={times}
-                            searchable={false}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                        <Select 
-                            placeholder="00:00"
-                            searchable={false}
-                            options={times}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                    </div>
-                    <div className={styles.time_grid}>
-                        <Select 
-                            placeholder="00:00"
-                            options={times}
-                            searchable={false}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                        <Select 
-                            placeholder="00:00"
-                            searchable={false}
-                            options={times}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                    </div>
-                    <div className={styles.time_grid}>
-                        <Select 
-                            placeholder="00:00"
-                            options={times}
-                            searchable={false}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                        <Select 
-                            placeholder="00:00"
-                            searchable={false}
-                            options={times}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                    </div>
-                    <div className={styles.time_grid}>
-                        <Select 
-                            placeholder="00:00"
-                            options={times}
-                            searchable={false}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                        <Select 
-                            placeholder="00:00"
-                            searchable={false}
-                            options={times}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                    </div>
-                    <div className={styles.time_grid}>
-                        <Select 
-                            placeholder="00:00"
-                            options={times}
-                            searchable={false}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                        <Select 
-                            placeholder="00:00"
-                            searchable={false}
-                            options={times}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                    </div>
-                    <div className={styles.time_grid}>
-                        <Select 
-                            placeholder="00:00"
-                            options={times}
-                            searchable={false}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                        <Select 
-                            placeholder="00:00"
-                            searchable={false}
-                            options={times}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                    </div>
-                    <div className={styles.time_grid}>
-                        <Select 
-                            placeholder="00:00"
-                            options={times}
-                            searchable={false}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                        <Select 
-                            placeholder="00:00"
-                            searchable={false}
-                            options={times}
-                            keepSelectedInList={false}
-                            dropdownGap={0}
-                            placeholder=""
-                            values={[{
-                                label: '00:00',
-                                value: '00:00'
-                            }]}
-                        />
-                    </div>
+                    {
+                        days.map((_, index) => <TimeRow 
+                                                    onChange={(val) => 
+                                                    handleTimeChange(index, val)} 
+                                                    value={parseWorkTime(index, Array.isArray(state.work_time) && state.work_time.length === 7 ? state.work_time[index] : "")}
+                                                />)
+                    }
                 </div>
             </div>
             {

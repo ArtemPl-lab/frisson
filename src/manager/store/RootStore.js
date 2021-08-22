@@ -1,4 +1,4 @@
-import ChangesStore from "../../admin/store/ChangesStore";
+import ChangesStore from "./ChangesStore";
 import CitiesStore from "./CitiesStore";
 import DirectionsStore from "./DirectionsStore";
 import ManagerStore from "./ManagerStore";
