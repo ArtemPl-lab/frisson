@@ -42,7 +42,7 @@ export const PlaceServices =observer(props => {
     }
     const createService = async () => {
         const res = await api.post(`/managers/places/${state.id}/amenities/`, {}, JSON.stringify({
-            "name": "Новая услуга",
+            "name": "Название услуги",
             "description": "Описание услуги",
             "cost_value": 0,
             "cost_currency": "₽"
@@ -55,7 +55,7 @@ export const PlaceServices =observer(props => {
                     amenities: [
                         ...prev.amenities,
                         {
-                            "name": "Новая услуга",
+                            "name": "Название услуги",
                             id: amenity_id,
                             "description": "Описание услуги",
                             "cost_value": 0,
@@ -227,6 +227,9 @@ export const PlaceServices =observer(props => {
                                         onChange={(e) => handleService(el.id, e)}
                                     />
                                     <br />
+                                    <div className={styles.info__label}>
+                                        Стоимость услуги
+                                    </div>
                                     <Input value={el.cost_value} name="cost_value" onChange={(e) => handleService(el.id, e)}/>
                                     <div className={styles.bulk} onClick={()=>removeService(el.id)}>
                                         Удалить услугу
