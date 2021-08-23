@@ -57,7 +57,7 @@ export const Settings = observer(props => {
             />
             <Input 
                 value={manager.data.password}
-                placeholder="Пароль"
+                placeholder="Придумайте пароль"
                 name="password"
                 onChange={(e) => manager.update({
                     [e.target.name]: e.target.value

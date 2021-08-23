@@ -60,8 +60,8 @@ class PlacesStore{
         return PlacesApi.update(this.current, place);
     }
     async create(data){
-        await PlacesApi.create(data);
         this.load();
+        return await PlacesApi.create(data); 
     }
     delete_current(){
         return this.delete(this.current.id);

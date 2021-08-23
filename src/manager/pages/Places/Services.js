@@ -134,6 +134,21 @@ export const PlaceServices =observer(props => {
             return res;
         });
     }
+    const handleImage = async (disId, e) => {
+        const res = await fetch(`${api.address}/managers/places/${state.id}/discounts/${disId}/image`, {
+            method: 'POST',
+            headers: api.authHeaders,
+            body: e.target.files[0]
+        });
+        // if(res.ok){
+        //     handleDiscount(disId, {
+        //         target: {
+        //             name: 'image_id',
+        //             value
+        //         }
+        //     })
+        // }
+    }
     if(!state || places.loading) return <Load />
     return(
         <Content>
@@ -182,14 +197,18 @@ export const PlaceServices =observer(props => {
                                         height: "160px"
                                     }}
                                     >
-                                        <NewImage height="160px"/>
+                                        <NewImage height="160px" image_id={discount.image_id} onChange={(e) => handleImage(discount.id, e)}/>
                                     </div>
                                     <div className={styles.bulk} onClick={()=>removeDiscount(discount.id)}>
                                         Удалить акцию
                                     </div>
-                                    <hr style={{
-                                        width: "338px"
-                                    }}/>
+                                    <hr
+                                        size="10px"
+                                        style={{
+                                            width: "338px",
+                                            height: "3px"
+                                        }}
+                                    />
                                     <br />
 
                                 </>
@@ -235,7 +254,9 @@ export const PlaceServices =observer(props => {
                                         Удалить услугу
                                     </div>
                                     <hr style={{
-                                        width: "338px"
+                                        width: "338px",
+                                        height: "3px"
+
                                     }}/>
                                     <br />
                                 </>
