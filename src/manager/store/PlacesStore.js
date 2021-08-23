@@ -56,12 +56,15 @@ class PlacesStore{
     removeImageFromGallery(imageId){
         return PlacesApi.removeImageFromGallery(this.current, imageId);
     }
-    update(place){
-        return PlacesApi.update(this.current, place);
+    async update(place){
+        const res = await PlacesApi.update(this.current, place);
+        this.load();
+        return res;
     }
     async create(data){
+        const res = await PlacesApi.create(data); 
         this.load();
-        return await PlacesApi.create(data); 
+        return res;
     }
     delete_current(){
         return this.delete(this.current.id);
