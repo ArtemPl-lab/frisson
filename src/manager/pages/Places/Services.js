@@ -206,7 +206,11 @@ export const PlaceServices =observer(props => {
                                         size="10px"
                                         style={{
                                             width: "338px",
-                                            height: "3px"
+                                            height: "3px",
+                                            backgroundColor: "#0E2F56",
+                                            opacity: ".95",
+                                            marginTop: "40px",
+                                            marginBottom: "40px"
                                         }}
                                     />
                                     <br />
@@ -255,8 +259,11 @@ export const PlaceServices =observer(props => {
                                     </div>
                                     <hr style={{
                                         width: "338px",
-                                        height: "3px"
-
+                                        height: "3px",
+                                        backgroundColor: "#0E2F56",
+                                        opacity: ".95",
+                                        marginTop: "40px",
+                                        marginBottom: "40px"
                                     }}/>
                                     <br />
                                 </>

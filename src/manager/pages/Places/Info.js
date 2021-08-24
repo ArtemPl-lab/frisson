@@ -13,6 +13,10 @@ import InputMask from 'react-input-mask';
 
 const times = [
     {
+        label: '--:--',
+        value: '--:--'
+    },
+    {
         label: '00:00',
         value: '00:00'
     },
@@ -100,13 +104,14 @@ const times = [
     },
 ];
 const days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+const short_days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 const workTimeToString = (dayIndex, from, to) => {
-    return `${days[dayIndex]} ${from === '00:00' && to === '00:00' ? ' - не рабочий день' : `c ${from} до ${to}`}`;
+    return `${days[dayIndex]} ${from === '--:--' && to === '--:--' ? ' - не рабочий день' : `c ${from} до ${to}`}`;
 }
 const parseWorkTime = (index, string = "") => {
     if(string.includes('не рабочий день')) return ({
-        from: '00:00',
-        to: '00:00'
+        from: '--:--',
+        to: '--:--'
     });
     let removedDayName = string.replace(days[index], '');
     const removedPrepos = removedDayName.replace('c', '');
@@ -119,51 +124,62 @@ const parseWorkTime = (index, string = "") => {
         });
     }
     return ({
-        from: '00:00',
-        to: '00:00'
+        from: '--:--',
+        to: '--:--'
     });
 }
 const TimeRow = props => {
     const [state, setState] = useState(props.value);
     return(
         <div className={styles.time_grid}>
-        <Select 
-            placeholder="00:00"
-            options={times}
-            searchable={false}
-            keepSelectedInList={false}
-            dropdownGap={0}
-            placeholder=""
-            values={times.filter(el => el.value === state.from)}
-            onChange={([ item ]) => setState(prev => {
-                const res = {
-                    ...prev,
-                    from: item.value
-                }
-                props.onChange(res)
-                return res;
+            <span className={styles.day}>
+                {props.day}
+            </span>
+            <Select 
+                placeholder="--:--"
+                options={times}
+                searchable={false}
+                keepSelectedInList={false}
+                dropdownGap={0}
+                placeholder=""
+                values={times.filter(el => el.value === state.from)}
+                onChange={([ item ]) => setState(prev => {
+                    let res = {
+                        ...prev,
+                        from: item.value
+                    }
+                    if(item.value === '--:--') res = {
+                        ...prev,
+                        to: '--:--'
+                    }
+                    props.onChange(res)
+                    return res;
 
-            })}
-        />
-        <Select 
-            placeholder="00:00"
-            searchable={false}
-            options={times}
-            keepSelectedInList={false}
-            dropdownGap={0}
-            placeholder=""
-            values={times.filter(el => el.value === state.to)}
-            onChange={([ item ]) => setState(prev => {
-                const res = {
-                    ...prev,
-                    to: item.value
-                }
-                props.onChange(res)
-                return res;
+                })}
+            />
+            <Select 
+                placeholder="00:00"
+                searchable={false}
+                options={times}
+                keepSelectedInList={false}
+                dropdownGap={0}
+                placeholder=""
+                values={times.filter(el => el.value === state.to)}
+                onChange={([ item ]) => setState(prev => {
+                    let res = {
+                        ...prev,
+                        to: item.value
+                    }
+                    if(item.value === '--:--') res = {
+                        ...prev,
+                        from: '--:--'
+                    }
+                    props.onChange(res)
+                    return res;
 
-            })}
-        />
-    </div>
+                })}
+            />
+        </div>
     );
 }
 export const PlaceInfo = observer(props => {
@@ -266,22 +282,36 @@ export const PlaceInfo = observer(props => {
             {
                 id !== 'new' ?
                 <div className={styles.info__header}>
-                    <div className={styles.disabled}>
-                        <Toggle 
-                            active={!(state.disabled_by_manager || state.disabled_by_admin)}
-                            onChange={(e) =>  {
-                                setState(prev => ({
-                                    ...prev,
-                                    disabled_by_manager: e.target.checked
-                                }))
-                                const ds = e.target.checked ? 'enabled' : 'disabled';
-                                api.post(`/managers/places/${state.id}/${ds}`);
-                            }}
-                        />
-                        <div className={styles.text}>
-                        Ваш место активно
+                    {
+                        state.disabled_by_admin ?
+                        <div className={styles.admined_dis}>
+                            Это место было отключено администратором. <br />
+                            Для восстановления напишите на почту <a href="mailto:admin@frissonapp.com">admin@frissonapp.com</a>
+                        </div> :
+                        <div className={styles.disabled}>
+                            <Toggle 
+                                active={!(state.disabled_by_manager || state.disabled_by_admin)}
+                                onChange={async (e) =>  {
+                                    setState(prev => ({
+                                        ...prev,
+                                        disabled_by_manager: !e.target.checked
+                                    }))
+                                    const ds = e.target.checked ? 'enabled' : 'disabled';
+                                    await api.post(`/managers/places/${state.id}/${ds}`);
+                                    places.load();
+                                }}
+                            />
+                            {
+                                !(state.disabled_by_manager || state.disabled_by_admin) ?
+                                <div className={styles.text}>
+                                    Ваш место активно
+                                </div> :
+                                <div className={styles.text_disable}>
+                                    Ваш место отключено
+                                </div>
+                            }
                         </div>
-                    </div>
+                    }
                     <div className={styles.info__id}>
                         (№{id})
                     </div>
@@ -500,6 +530,7 @@ export const PlaceInfo = observer(props => {
                                                     onChange={(val) => 
                                                     handleTimeChange(index, val)} 
                                                     value={parseWorkTime(index, Array.isArray(state.work_time) && state.work_time.length === 7 ? state.work_time[index] : "")}
+                                                    day={short_days[index]}
                                                 />)
                     }
                 </div>

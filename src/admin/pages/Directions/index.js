@@ -135,7 +135,14 @@ export const Directions = observer(props => {
                                         &nbsp;
                                         Добавить активность
                                     </Button>
-                                    <hr />
+                                    <hr style={{
+                                        height: "2px",
+                                        backgroundColor: "#0E2F56",
+                                        opacity: ".95",
+                                        marginTop: "40px",
+                                        marginBottom: "40px",
+                                        width: "40%"
+                                    }}/>
                                 </div>
                             );
                         })

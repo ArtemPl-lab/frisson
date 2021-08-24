@@ -97,6 +97,17 @@
     color: #38A466;
     margin-left: 12px;
 }
+.disabled .text_disable{
+    font-family: 'M PLUS 1p', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #96A4AE;
+
+    margin-left: 12px;
+}
 .info__grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -243,6 +254,7 @@
     grid-column-gap: 10px;
     margin-bottom: 10px;
     max-width: 338px;
+    position: relative;
 }
 .bulk{
     font-family: 'M PLUS 1p', sans-serif;
@@ -275,4 +287,22 @@
     font-feature-settings: 'pnum' on, 'lnum' on;
     color: #FC3B2D;
     margin-left: 70px;
+}
+.admined_dis{
+    color: #FC3B2D;
+}
+.admined_dis a{
+    color: #0E2F56;
+}
+.day{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    font-feature-settings: 'ss02' on, 'ss09' on;
+    color: #8798AD;
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
 }
