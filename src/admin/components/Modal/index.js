@@ -48,11 +48,7 @@ export const ModalProvider = ({ children }) => {
     return(
         <modalContext.Provider value={state}>
             {children}
-            {
-                state.options && state.options.show ?
-                <ModalWrapper />:
-                ''
-            }
+            <ModalWrapper />
         </modalContext.Provider>
     );
 }
@@ -70,6 +66,7 @@ const ModalWrapper = () => {
         }));
         history.goBack();
     }
+    if(!modal.options.show) return <></>
     return(
         <>
             <div 
