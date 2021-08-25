@@ -23,6 +23,7 @@ class ChangesStore{
         if(!this.hasChanges) return;
         this.changes.forEach(c => c.callback());
         this.hasChanges = false;
+        this.clear();
         alert('Изменения сохранены!');
     }
     clear(){

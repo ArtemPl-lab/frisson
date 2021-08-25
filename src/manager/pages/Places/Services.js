@@ -11,7 +11,6 @@ export const PlaceServices =observer(props => {
     const { id } = useParams();
     const { places, directions, changes } = useStore();
     const [state, setState] = useState(null);
-    const history = useHistory();
     useEffect(() => setState(places.current), [places.current]);
     const createDiscount = async  () => {
         const res = await api.post(`/managers/places/${state.id}/discounts/`, {}, JSON.stringify({
@@ -117,12 +116,15 @@ export const PlaceServices =observer(props => {
                 ...prev,
                 amenities: prev.amenities.map(el => {
                     if(el.id === srviceId){
-                        changes.add(`update_service_${srviceId}`, ()=>api.put(`/managers/places/${state.id}/amenities/`, {
-                            amenity_id: srviceId
-                        }, {
-                            ...el,
-                            [e.target.name]: e.target.value
-                        }))
+                        changes.add(`update_service_${srviceId}`, async ()=>{
+                            await api.put(`/managers/places/${state.id}/amenities/`, {
+                                amenity_id: srviceId
+                            }, {
+                                ...el,
+                                [e.target.name]: e.target.value
+                            })
+                            places.getPlace(id);
+                        })
                         return({
                             ...el,
                             [e.target.name]: e.target.value

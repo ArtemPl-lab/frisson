@@ -24,7 +24,8 @@ class ChangesStore{
         if(!this.hasChanges) return;
         this.hasChanges = false;
         this.changes.forEach(c => this.stack.push(c.callback()));
-        await Promise.all(this.stack)
+        await Promise.all(this.stack);
+        this.clear();
         this.stack = [];
         alert('Изменения сохранены!');
     }
