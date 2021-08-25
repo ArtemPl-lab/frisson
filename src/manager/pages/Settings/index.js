@@ -51,6 +51,7 @@ export const Settings = observer(props => {
             <Input 
                 value={manager.data.email}
                 name="email"
+                placeholder="Email"
                 onChange={(e) => manager.update({
                     [e.target.name]: e.target.value
                 }, history)}
