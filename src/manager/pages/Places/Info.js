@@ -546,13 +546,13 @@ export const PlaceInfo = observer(props => {
                         (
                             state.price === 3 ?
                             <div className={styles.price_desc}>
-                                Больше 5 000 - 8 000 ₽ <br />
+                                5 000 - 8 000 ₽ <br />
                                 В среднем, на одного человека
                             </div> :
                             (
                                 state.price === 2 ?
                                 <div className={styles.price_desc}>
-                                    Больше 3 000 - 5 000 ₽ <br />
+                                    3 000 - 5 000 ₽ <br />
                                     В среднем, на одного человека
                                 </div> :
                                 (
