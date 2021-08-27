@@ -6,7 +6,10 @@ export const Rubles = ({ active, ...props }) => {
     const rubles = Array(length).fill(true, 0, active).fill(false, active, length);
     return(
         <div className={`${styles.rubles} ${props.className}`}>
-            {rubles.map((active, index) => <Ruble active={active} onClick={()=>props.onChange(index+1)}/>)}
+            {rubles.map((active, index) => <Ruble active={active} onClick={()=>{
+                props.onChange(index+1);
+                console.log(index+1);
+            }}/>)}
         </div>
     );
 }

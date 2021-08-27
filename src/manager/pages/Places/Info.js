@@ -182,6 +182,15 @@ const TimeRow = props => {
         </div>
     );
 }
+function compare(a, b) {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  }
 export const PlaceInfo = observer(props => {
     const { id } = useParams();
     const { places, directions, changes, tags, cities} = useStore();
@@ -213,7 +222,7 @@ export const PlaceInfo = observer(props => {
                 [e.target.name]: e.target.value 
             };
             if(id === 'new'){
-                if(state.name && state.phones && state.phones.length && state.description && state.city_id && state.address){
+                if(res.name && res.phones && res.phones.length && res.description && res.city_id && res.address && res.price){
                     changes.add(`create_place`, async ()=>{
                         const { id: place_id } = await places.create(res);
                         history.push(`/places/${place_id}/info`);
@@ -243,7 +252,7 @@ export const PlaceInfo = observer(props => {
                 phones: prev.phones.map((el, ind) => index === ind ? e.target.value : el)
             };
             if(id === 'new'){
-                if(res.name && res.phones && res.phones.length && res.description && res.city_id && res.address){
+                if(res.name && res.phones && res.phones.length && res.description && res.city_id && res.address && res.price){
                     changes.add(`create_place`, async ()=>{
                         const { id: place_id } = await places.create(res);
                         history.push(`/places/${place_id}/info`);
@@ -263,7 +272,7 @@ export const PlaceInfo = observer(props => {
                 longitude
             };
             if(id === 'new'){
-                if(state.name && state.phones && state.phones.length && state.description && state.city_id && state.address){
+                if(res.name && res.phones && res.phones.length && res.description && res.city_id && res.address && res.price){
                     changes.add(`create_place`, async ()=>{
                         const { id: place_id } = await places.create(res);
                         history.push(`/places/${place_id}/info`);
@@ -327,7 +336,6 @@ export const PlaceInfo = observer(props => {
                         Основная информация
                     </div>
                     <Input value={state.name} name="name" onChange={handleChange} placeholder="Название активности"/>
-                    {/* <Input value={state.activity_type_id} name="activity_type_id" onChange={handleChange}/> */}
                     <select 
                         onChange={handleChange} 
                         name="activity_type_id" 
@@ -335,7 +343,7 @@ export const PlaceInfo = observer(props => {
                         className={styles.select}
                     >
                         {
-                            directions.list.map(dir => dir.types.map(type => <option value={type.id}>{type.name}</option>))
+                            directions.list.map(dir => dir.types.map(type => type)).reduce((prev, curr) => prev.concat(curr), []).sort(compare).map(type => <option value={type.id}>{type.name}</option>)
                         }
                     </select>
                     <br />
@@ -406,10 +414,6 @@ export const PlaceInfo = observer(props => {
                         coords={[state.latitude, state.longitude]}
                         onChange={handleMapChange}
                     />
-                    {/* <TextArea style={{
-                        width: "337px",
-                        height: "126px"
-                    }}/> */}
                     <br />
                     <br />
                     <div className={styles.info__label}>
@@ -525,16 +529,43 @@ export const PlaceInfo = observer(props => {
                     <div className={styles.info__label}>
                         Уровень цен
                     </div>
-                    {/* <div className={styles.row}> */}
-                        <Rubles active={state.price} onChange={(val) => {
-                            handleChange({
-                                target: {
-                                    name: 'price',
-                                    value: val
-                                }
-                            });
-                        }}/>
-                    {/* </div> */}
+                    <Rubles active={state.price} onChange={(val) => {
+                        handleChange({
+                            target: {
+                                name: 'price',
+                                value: val
+                            }
+                        });
+                    }}/>
+                    {
+                        state.price === 4 ?
+                        <div className={styles.price_desc}>
+                            Больше 8 000 ₽ <br />
+                            В среднем, на одного человека
+                        </div> :
+                        (
+                            state.price === 3 ?
+                            <div className={styles.price_desc}>
+                                Больше 5 000 - 8 000 ₽ <br />
+                                В среднем, на одного человека
+                            </div> :
+                            (
+                                state.price === 2 ?
+                                <div className={styles.price_desc}>
+                                    Больше 3 000 - 5 000 ₽ <br />
+                                    В среднем, на одного человека
+                                </div> :
+                                (
+                                    state.price === 1 ?
+                                    <div className={styles.price_desc}>
+                                        Меньше 3 000 ₽ <br />
+                                        В среднем, на одного человека
+                                    </div> :
+                                    <></>
+                                )
+                            )
+                        )
+                    }
                     <br />
                     <div className={styles.info__label}>
                         Время работы

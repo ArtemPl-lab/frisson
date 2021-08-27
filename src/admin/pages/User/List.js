@@ -10,14 +10,13 @@ import { useState } from 'react';
 
 export const UsersList = observer(props => {
     const { managers } = useStore();
-    const [search, setSearchVal] = useState('');
     const { ref, inView} = useInView({ threshold: 0 });
     if(inView && !managers.loading && !managers.loadingEnd){
         managers.load();
     }
     const onSearch = (e) => {
         e.preventDefault();
-        managers.search(search);
+        managers.search();
     }
     return(
         <Content>
@@ -38,9 +37,9 @@ export const UsersList = observer(props => {
             </header>
             <Search 
                 placeholder="Поиск по ID менеджера или Уникальному номеру активности" 
-                value={search} 
+                value={managers.queryString} 
                 onChange={(e) => {
-                    setSearchVal(prev => e.target.value);
+                    managers.updateQuery(e.target.value);
                     if(!e.target.value){
                         managers.search('');
                     }

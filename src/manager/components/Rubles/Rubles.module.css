@@ -5,6 +5,7 @@
     margin-right: 15px;
     height: 25px;
     width: 20px;
+    cursor: pointer;
 }
 .ruble path{
     fill: #C8C8C8;

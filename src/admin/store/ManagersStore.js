@@ -6,6 +6,7 @@ class ManagersStore{
     loading = false;
     loadingEnd = false;
     searched = false;
+    queryString = '';
     constructor(){
         makeAutoObservable(this);
     }
@@ -27,14 +28,17 @@ class ManagersStore{
         };
         console.log(this.list[index]);
     }
-    search(query){
-        if(query === '') {
+    updateQuery(q){
+        this.queryString = q;
+    }
+    search(){
+        if(this.queryString === '') {
             this.init();
             this.searched = false;
             return;
         }
         this.searched = true;
-        return ManagersApi.search(this.list, query);
+        return ManagersApi.search(this.list, this.queryString);
     }
     async init(){
         this.list = [];
