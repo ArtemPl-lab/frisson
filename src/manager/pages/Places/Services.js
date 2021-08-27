@@ -35,9 +35,9 @@ export const PlaceServices =observer(props => {
                         }
                     ]
                 });
-            })
+            });
         }
-
+        places.getPlace(id);
     }
     const createService = async () => {
         const res = await api.post(`/managers/places/${state.id}/amenities/`, {}, JSON.stringify({
@@ -64,6 +64,7 @@ export const PlaceServices =observer(props => {
                 });
             })
         }
+        places.getPlace(id);
     }
     const removeDiscount = async (disId) => {
         const res = await api.delete(`/managers/places/${state.id}/discounts/${disId}`);
@@ -75,6 +76,7 @@ export const PlaceServices =observer(props => {
                 });
             });
         }
+        places.getPlace(id);
     }
     const removeService = async (srviceId) => {
         const res = await api.delete(`/managers/places/${state.id}/amenities/`, {
@@ -88,6 +90,7 @@ export const PlaceServices =observer(props => {
                 });
             });
         }
+        places.getPlace(id);
     }
     const handleDiscount = async (disId, e) => {
         setState(prev => {
@@ -95,10 +98,13 @@ export const PlaceServices =observer(props => {
                 ...prev,
                 discounts: prev.discounts.map(el => {
                     if(el.id === disId){
-                        changes.add(`update_discount_${disId}`, ()=>api.put(`/managers/places/${state.id}/discounts/${disId}`, {}, {
-                            ...el,
-                            [e.target.name]: e.target.value
-                        }))
+                        changes.add(`update_discount_${disId}`, ()=>{
+                            api.put(`/managers/places/${state.id}/discounts/${disId}`, {}, {
+                                ...el,
+                                [e.target.name]: e.target.value
+                            })
+                            places.getPlace(id);
+                        })
                         return({
                             ...el,
                             [e.target.name]: e.target.value
