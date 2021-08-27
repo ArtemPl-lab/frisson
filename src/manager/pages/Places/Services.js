@@ -37,7 +37,6 @@ export const PlaceServices =observer(props => {
                 });
             });
         }
-        places.getPlace(id);
     }
     const createService = async () => {
         const res = await api.post(`/managers/places/${state.id}/amenities/`, {}, JSON.stringify({
@@ -62,9 +61,9 @@ export const PlaceServices =observer(props => {
                         }
                     ]
                 });
-            })
+            });
+            
         }
-        places.getPlace(id);
     }
     const removeDiscount = async (disId) => {
         const res = await api.delete(`/managers/places/${state.id}/discounts/${disId}`);
@@ -76,7 +75,6 @@ export const PlaceServices =observer(props => {
                 });
             });
         }
-        places.getPlace(id);
     }
     const removeService = async (srviceId) => {
         const res = await api.delete(`/managers/places/${state.id}/amenities/`, {
@@ -90,7 +88,6 @@ export const PlaceServices =observer(props => {
                 });
             });
         }
-        places.getPlace(id);
     }
     const handleDiscount = async (disId, e) => {
         setState(prev => {
