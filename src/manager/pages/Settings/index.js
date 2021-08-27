@@ -3,7 +3,7 @@ import { ComeBack, Headline, Input } from '../../components';
 import { useStore } from '../../store';
 import { generate } from 'generate-password';
 import styles from './Settings.module.css';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 
 export const Settings = observer(props => {
@@ -68,9 +68,9 @@ export const Settings = observer(props => {
             {/* <button onClick={handleSave}>
                 Подтвердить
             </button> */}
-            <div className={styles.bulk}>
+            <Link className={styles.bulk} to={`${history.location.pathname}/confirm_delete_account`}>
                 Удалить аккаунт
-            </div>
+            </Link>
         </div>
     );
 });

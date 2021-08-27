@@ -136,20 +136,45 @@ export const PlaceServices =observer(props => {
             return res;
         });
     }
+    const handleDiscountWithoutChanges = async (disId, e) => {
+        setState(prev => {
+            const res = {
+                ...prev,
+                discounts: prev.discounts.map(el => {
+                    if(el.id === disId){
+                        // changes.add(`update_discount_${disId}`, ()=>api.put(`/managers/places/${state.id}/discounts/${disId}`, {}, {
+                        //     ...el,
+                        //     [e.target.name]: e.target.value
+                        // }))
+                        return({
+                            ...el,
+                            [e.target.name]: e.target.value
+                        });
+                    }
+                    return el;
+                })
+            };
+            return res;
+        });
+    }
     const handleImage = async (disId, e) => {
+        console.log(e);
+        const fd = new FormData();
+        fd.append('photo', e.target.files[0])
         const res = await fetch(`${api.address}/managers/places/${state.id}/discounts/${disId}/image`, {
             method: 'POST',
             headers: api.authHeaders,
-            body: e.target.files[0]
+            body: fd
         });
-        // if(res.ok){
-        //     handleDiscount(disId, {
-        //         target: {
-        //             name: 'image_id',
-        //             value
-        //         }
-        //     })
-        // }
+        if(res.ok){
+            const { id: image_id } = await res.json();
+            handleDiscountWithoutChanges(disId, {
+                target: {
+                    name: 'image_id',
+                    value: image_id
+                }
+            })
+        }
     }
     if(!state || places.loading) return <Load />
     return(

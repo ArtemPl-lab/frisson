@@ -13,6 +13,7 @@ export const BaseRoutes = props => {
             <Route path="*/logout" component={Pages.LogoutConfirm}/>
             <Route path="*/confirm_phone/:phone" component={Pages.ConfirmPhone}/>
             <Route path="*/confirm_delete_place" component={Pages.DeleteConfirm} />
+            <Route path="*/confirm_delete_account" component={Pages.AccountDeleteConfirm} />
         </>
     );
 }

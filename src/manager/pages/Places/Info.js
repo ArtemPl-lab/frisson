@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import styles from './Places.module.css';
-import { Content, Headline, Input, TextArea, Button, SelectMap, Tag } from "../../components";
+import { Content, Headline, Input, TextArea, Button, SelectMap, Rubles } from "../../components";
 import { Load } from "../Load";
 import Toggle from "../../components/Toggle/Toggle";
 import { useStore } from "../../store";
@@ -201,7 +201,7 @@ export const PlaceInfo = observer(props => {
             handleChange({
                 target: {
                     name: 'work_time',
-                    value: Array.apply(0, new Array(7)).map((_, ind) => ind === index ? res : workTimeToString(ind, '00:00', '00:00'))
+                    value: Array.apply(0, new Array(7)).map((_, ind) => ind === index ? res : workTimeToString(ind, '--:--', '--:--'))
                 }
             });
         }
@@ -374,7 +374,7 @@ export const PlaceInfo = observer(props => {
                     <TextArea 
                         style={{
                             width: "337px",
-                            height: "206px"
+                            height: "135px"
                         }}
                         value={state.description} 
                         name="description" 
@@ -418,7 +418,7 @@ export const PlaceInfo = observer(props => {
                     <TextArea 
                         style={{
                             width: "337px",
-                            height: "206px"
+                            height: "135px"
                         }}
                         value={state.feature} 
                         name="feature" 
@@ -521,6 +521,20 @@ export const PlaceInfo = observer(props => {
                             placeholder="Ссылка на Twitter"
                         />
                     </div>
+                    <br />
+                    <div className={styles.info__label}>
+                        Уровень цен
+                    </div>
+                    {/* <div className={styles.row}> */}
+                        <Rubles active={state.price} onChange={(val) => {
+                            handleChange({
+                                target: {
+                                    name: 'price',
+                                    value: val
+                                }
+                            });
+                        }}/>
+                    {/* </div> */}
                     <br />
                     <div className={styles.info__label}>
                         Время работы

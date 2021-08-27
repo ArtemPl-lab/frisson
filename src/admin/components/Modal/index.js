@@ -15,6 +15,8 @@ const modalContext = createContext();
             ...prev,
             options: {
                 ...prev.options,
+                width: this.props.options.width,
+                height: this.props.options.height,
                 show: true
             },
             children: this.props.children
@@ -81,8 +83,8 @@ const ModalWrapper = () => {
                     ${modal.options.show ? styles.show : styles.hidden}
                 `}
                 style={{
-                    width: modal.width || 240,
-                    height: modal.height || 144
+                    width: modal.options.width || 240,
+                    height: modal.options.height || 144
                 }}
             >
                 {modal.children}

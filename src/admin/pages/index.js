@@ -4,3 +4,4 @@ export * from './User';
 export * from './Tags';
 export * from './Directions';
 export * from './Review';
+export * from './DeleteConfirm';

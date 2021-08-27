@@ -14,3 +14,4 @@ export * from './Avatar';
 export * from './Stars';
 export * from './Map';
 export * from './Tag';
+export * from './Rubles';

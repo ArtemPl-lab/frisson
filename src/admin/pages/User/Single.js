@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { useStore } from '../../store';
 import api from '../../api';
 import { generate } from 'generate-password';
@@ -53,6 +53,7 @@ export const UserPage = observer(props => {
         const res = await api.post('/admins/managers', creds);
         const { id } = await res.json();
         history.replace(`/users/${id}`);
+        managers.init();
     }
     useEffect(async () => {
         setLoading(true);
@@ -69,9 +70,7 @@ export const UserPage = observer(props => {
         window.location.href = '/manager/home';
     }
     const bulkAccount = async () => {
-        await api.delete(`/admins/managers/${id}`);
-        managers.delete(id);
-        history.replace('/users');
+        history.replace(`${history.location.pathname}/confirm_delete`);
     }
     const handleChange = e => {
         setState(prev => {
@@ -113,7 +112,7 @@ export const UserPage = observer(props => {
                 {
                     id === 'new' ?
                     'Новый профиль': 
-                    'Настройки профиля'
+                    `Настройки профиля (ID: ${id})`
                 }
                 
             </Headline>
@@ -161,9 +160,9 @@ export const UserPage = observer(props => {
                         </div>
                     }
                     <footer className={styles.footer}>
-                        <div className={styles.bulk} onClick={bulkAccount}>
+                        <Link to={`${history.location.pathname}/confirm_delete`} push className={styles.bulk}>
                             Удалить аккаунт
-                        </div>
+                        </Link>
                         <div className={styles.controlling} onClick={manageAccount}>
                             Управлять этим аккаунтом
                         </div>

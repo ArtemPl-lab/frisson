@@ -1,0 +1,14 @@
+.rubles{
+    display: flex;
+}
+.ruble{
+    margin-right: 15px;
+    height: 25px;
+    width: 20px;
+}
+.ruble path{
+    fill: #C8C8C8;
+}
+.ruble.active path{
+    fill: #0E2F56;
+}
