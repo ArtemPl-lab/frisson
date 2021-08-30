@@ -152,6 +152,10 @@ const TimeRow = props => {
                         ...prev,
                         to: '--:--'
                     }
+                    else if(res.to === '--:--') res = {
+                        ...prev,
+                        to: '00:00'
+                    }
                     props.onChange(res)
                     return res;
 
@@ -173,6 +177,10 @@ const TimeRow = props => {
                     if(item.value === '--:--') res = {
                         ...prev,
                         from: '--:--'
+                    }
+                    else if(res.from === '--:--') res = {
+                        ...prev,
+                        from: '00:00'
                     }
                     props.onChange(res)
                     return res;
@@ -382,7 +390,7 @@ export const PlaceInfo = observer(props => {
                     <TextArea 
                         style={{
                             width: "337px",
-                            height: "135px"
+                            height: "165px"
                         }}
                         value={state.description} 
                         name="description" 
@@ -422,7 +430,7 @@ export const PlaceInfo = observer(props => {
                     <TextArea 
                         style={{
                             width: "337px",
-                            height: "135px"
+                            height: "165px"
                         }}
                         value={state.feature} 
                         name="feature" 

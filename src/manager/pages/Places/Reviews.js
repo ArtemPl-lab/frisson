@@ -24,10 +24,10 @@ export const PlaceReviews = observer(props => {
                 </div>
             </div>
             <Tabs>
-                <Tab name={`Все отзывы (${places.current.reviews.length})`}>
+                <Tab name={`Все отзывы (${places.current.reviews.filter(el => el.user_avatar_id !== -1).length})`}>
                     {
-                        places.current.reviews.length ?
-                        places.current.reviews.map(review => <Review {...review}/>):
+                        places.current.reviews.filter(el => el.user_avatar_id !== -1).length ?
+                        places.current.reviews.filter(el => el.user_avatar_id !== -1).map(review => <Review {...review}/>):
                         <div className={styles.no_reeviews}>
                             У этой активности пока что нет отзывов
                         </div>
