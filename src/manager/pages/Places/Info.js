@@ -145,17 +145,12 @@ const TimeRow = props => {
                 values={times.filter(el => el.value === state.from)}
                 onChange={([ item ]) => setState(prev => {
                     let res = {
-                        ...prev,
+                        ...state,
                         from: item.value
                     }
-                    if(item.value === '--:--') res = {
-                        ...prev,
-                        to: '--:--'
-                    }
-                    else if(res.to === '--:--') res = {
-                        ...prev,
-                        to: '00:00'
-                    }
+                    console.log(state);
+                    if(item.value === '--:--') res['to'] = '--:--';
+                    else if(res.to === '--:--') res['to'] = '00:00';
                     props.onChange(res)
                     return res;
 
@@ -171,17 +166,11 @@ const TimeRow = props => {
                 values={times.filter(el => el.value === state.to)}
                 onChange={([ item ]) => setState(prev => {
                     let res = {
-                        ...prev,
+                        ...state,
                         to: item.value
                     }
-                    if(item.value === '--:--') res = {
-                        ...prev,
-                        from: '--:--'
-                    }
-                    else if(res.from === '--:--') res = {
-                        ...prev,
-                        from: '00:00'
-                    }
+                    if(item.value === '--:--') res['from'] = '--:--';
+                    else if(res.from === '--:--') res['from'] = '00:00';
                     props.onChange(res)
                     return res;
 

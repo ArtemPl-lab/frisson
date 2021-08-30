@@ -12,10 +12,13 @@ class DirectionsStore{
     }
     updateGroup(group){
         this.list = this.list.map(direction => direction.id === group.id ? group : direction);
-        this.root.changes.add(`update_group_${group.id}`, () => api.put(`/activities/group/${group.id}`, {
-            name: group.name,
-            icon: group.icon
-        }));
+        this.root.changes.add(`update_group_${group.id}`, async () => {
+            await api.put(`/activities/group/${group.id}`, {
+                name: group.name,
+                icon: group.icon
+            });
+            this.init()
+        });
     }
     async createGroup(){
         const res = await api.post(`/activities/group/`, {
@@ -23,7 +26,7 @@ class DirectionsStore{
             icon: 'unknown'
         });
         const json = await res.json();
-        this.list.push({
+        this.list.unshift({
             id: json,
             icon: 'unknown',
             name: 'Новая группа активностей',
@@ -38,7 +41,10 @@ class DirectionsStore{
                 })
             })
         );
-        this.root.changes.add(`update_type_${activity.id}`, () => api.put(`/activities/type/${activity.id}`, activity));
+        this.root.changes.add(`update_type_${activity.id}`, async () => {
+            await api.put(`/activities/type/${activity.id}`, activity);
+            this.init();
+        });
     }
     async createType(idGroup){
         const res = await api.post(`/activities/type/`, {

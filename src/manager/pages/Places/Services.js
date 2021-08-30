@@ -194,7 +194,9 @@ export const PlaceServices =observer(props => {
                 </div>
             </div>
             <div className={styles.info__grid}>
-                <div>
+                <div style={{
+                    paddingBottom: "100px"
+                }}>
                     <div className={styles.info__label}>
                         Акции
                     </div>
@@ -257,7 +259,9 @@ export const PlaceServices =observer(props => {
                         Добавить акцию
                     </Button>
                 </div>
-                <div>
+                <div style={{
+                    paddingBottom: "100px"
+                }}>
                     <div className={styles.info__label}>
                         Базовые услуги
                     </div>
