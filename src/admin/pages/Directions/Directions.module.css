@@ -66,3 +66,13 @@
     width: 338px;
     margin-top: 10px;
 }
+.sel_row{
+    display: grid;
+    grid-template-columns: 3.5fr 1fr;
+    max-height: 40px;
+    max-width: 338px;
+    grid-column-gap: 15px;
+}
+.sel_row input{
+    width: 100% !important;
+}

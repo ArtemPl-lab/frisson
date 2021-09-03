@@ -15,6 +15,7 @@
   display: block !important; */
   color: #031523 !important;
   position: relative;
+  flex-wrap: nowrap;
   background: url(./manager/images/select.svg) no-repeat right 10px center;
 }
 .css-wmw4vi-ReactDropdownSelect:focus, .css-wmw4vi-ReactDropdownSelect:focus-within{
@@ -50,6 +51,9 @@
   align-items: center !important;
   justify-content: center !important;
   padding: 8px 16px !important;
+}
+.react-dropdown-select-content{
+  flex-wrap: nowrap !important;
 }
 .react-dropdown-select-content span{
   font-family: 'M PLUS 1p', sans-serif !important;

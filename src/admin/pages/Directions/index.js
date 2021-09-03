@@ -6,49 +6,78 @@ import Select from 'react-dropdown-select';
 
 const options = [
     {
-        label: 'Самолёт',
-        value: 'air'
-    },
-    {
-        label: 'Камера',
-        value: 'camera'
-    },
-    {
-        label: 'Сердце',
-        value: 'heart'
-    },
-    {
-        label: 'Телефон',
-        value: 'phone'
-    },
-    {
-        label: 'Деревья',
-        value: 'trees'
-    },
-    {
-        label: 'Знак вопроса',
-        value: 'unknown'
-    },
-    {
-        label: 'Спорт',
-        value: 'sport'
-    },
-    {
-        label: 'Глобус',
-        value: 'globe'
-    },
-    {
-        label: 'Горы',
-        value: 'mountains'
-    },
-    {
-        label: 'Цель',
-        value: 'target'
-    },
-    {
-        label: 'Вода',
+        label: <i class="fas fa-water" />,
         value: 'water'
-    }
+    },
+    {
+        label: <i class="fas fa-wind" />,
+        value: 'wind'
+    },
+    {
+        label: <i class="fas fa-mountain" />,
+        value: 'mountain'
+    },
+    {
+        label: <i class="fas fa-tachometer-alt" />,
+        value: 'tachometer-alt'
+    },
+    {
+        label: <i class="fas fa-smile-wink" />,
+        value: 'smile-wink'
+    },
+    {
+        label: <i class="fas fa-tree" />,
+        value: 'tree'
+    },
+    {
+        label: <i class="fas fa-basketball-ball" />,
+        value: 'basketball-ball'
+    },
+    {
+        label: <i class="fas fa-trophy" />,
+        value: 'trophy'
+    },
+    // {
+    //     label: 'Самолёт',
+    //     value: 'air'
+    // },
+    // {
+    //     label: 'Камера',
+    //     value: 'camera'
+    // },
+    // {
+    //     label: 'Сердце',
+    //     value: 'heart'
+    // },
+    // {
+    //     label: 'Телефон',
+    //     value: 'phone'
+    // },
+    // {
+    //     label: 'Деревья',
+    //     value: 'trees'
+    // },
+    // {
+    //     label: 'Знак вопроса',
+    //     value: 'unknown'
+    // },
+    // {
+    //     label: 'Спорт',
+    //     value: 'sport'
+    // },
+    // {
+    //     label: 'Глобус',
+    //     value: 'globe'
+    // },
+    // {
+    //     label: 'Горы',
+    //     value: 'mountains'
+    // },
+    // {
+    //     label: 'Цель',
+    //     value: 'target'
+    // },
+
 ]
 
 export const Directions = observer(props => {
@@ -83,15 +112,27 @@ export const Directions = observer(props => {
                                     <div className={styles.direction_name}>
                                         Группа активностей
                                     </div>
-                                    <Input 
-                                        value={direction.name} 
-                                        onChange={(e) => directions.updateGroup({
-                                            ...direction,
-                                            name: e.target.value
-                                        })}
-                                    />
-                                    <br />
-                                    <div className={styles.direction_name}>
+                                    <div className={styles.sel_row}>
+                                        <Input 
+                                            value={direction.name} 
+                                            onChange={(e) => directions.updateGroup({
+                                                ...direction,
+                                                name: e.target.value
+                                            })}
+                                        />
+                                        <Select
+                                            values={[options.find(opt => opt.value === direction.icon)]}
+                                            options={options}
+                                            searchable={false}
+                                            dropdownGap={0}
+                                            onChange={([item]) => directions.updateGroup({
+                                                ...direction,
+                                                icon: item.value
+                                            })}
+                                        />
+                                    </div>
+                                    {/* <br /> */}
+                                    {/* <div className={styles.direction_name}>
                                         Иконка
                                     </div>
                                     <div className={styles.select_wrapper}>
@@ -105,7 +146,7 @@ export const Directions = observer(props => {
                                                 icon: item.value
                                             })}
                                         />
-                                    </div>
+                                    </div> */}
                                     <div className={styles.direction_types_label}>
                                         Активности в группе
                                     </div>
