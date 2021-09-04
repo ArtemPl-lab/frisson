@@ -350,7 +350,7 @@ export const PlaceInfo = observer(props => {
                     <Select 
                         multi
                         options={
-                            tags.list.map(tag => ({
+                            tags.list.slice().sort(compare).map(tag => ({
                                 label: tag.name,
                                 value: tag.id
                             }))

@@ -23,12 +23,12 @@ class DirectionsStore{
     async createGroup(){
         const res = await api.post(`/activities/group/`, {
             name: 'Новая группа активностей',
-            icon: 'unknown'
+            icon: 'water'
         });
         const json = await res.json();
         this.list.unshift({
             id: json,
-            icon: 'unknown',
+            icon: 'water',
             name: 'Новая группа активностей',
             types: []
         });
