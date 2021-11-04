@@ -10,6 +10,8 @@ import './index.css';
 import About from './desktop/AboutAlt'; // About || AboutAlt
 import Help from './desktop/Help';
 import { YMaps } from 'react-yandex-maps';
+import Politice from './desktop/Politice';
+import Terms from './desktop/Terms';
 
 ReactDOM.render(
     <React.StrictMode>
@@ -20,6 +22,8 @@ ReactDOM.render(
                         <Switch>
                             <Route path="/" exact component={HomePage} />
                             <Route path="/about" exact component={About} />
+                            <Route path="/data-processing-policy" exact component={Politice} />
+                            <Route path="/terms-of-use" exact component={Terms} />
                             <Route path="/help" exact component={Help} />
                             <Route path="/manager/*" component={Manager} />
                             <Route path="/admin/*" component={Admin} />
