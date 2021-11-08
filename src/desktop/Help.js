@@ -24,6 +24,20 @@ const Help = () => {
                                 </div>
                             </div>
                         </div>
+                        <p style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    margin: '0 auto',
+                    color: '#38a466 !important',
+                    maxWidth: '1320px',
+                    paddingLeft: '12px',
+                    paddingRight: '80px',
+                    marginTop: '250px'
+                }} className="title">
+                    <a href="/terms-of-use">Пользовательское соглашение</a>
+                    <a href="/data-processing-policy">Политика обработки данных</a>
+                </p>
                     </div>
                 </div>
             </section>
