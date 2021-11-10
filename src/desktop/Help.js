@@ -41,7 +41,7 @@ const Help = () => {
                     </div>
                 </div>
             </section>
-            <DesktopOnly />
+            {/* <DesktopOnly /> */}
         </>
     )
 }

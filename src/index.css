@@ -911,6 +911,58 @@ header .wrapper .menu ul li a.active {
   left: auto;
   right: 0
 }
+@media screen and (max-width: 500px) {
+  #about.alt .upper .image img {
+    right: -26vw;
+    top: -300px;
+    width: 1400px
+  }
+  #about p {
+    line-height: 150%
+  }
+  #about .upper {
+    padding-top: 20vw;
+    min-height: 100vh
+  }
+  #about .upper .title h1{
+    font-size: 30px !important;
+  }
+  #about .upper  p {
+    max-width: 465px;
+    margin-top: 5px !important;
+    font-size: 10px;
+  }
+  #about .upper .title p {
+    max-width: 465px;
+    margin-top: 24px
+  }
+  #about .upper .title p:first-of-type {
+    margin-top: 28px
+  }
+  #about .upper .down {
+    margin-top: 100px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer
+  }
+  #about .upper .down p {
+    margin-right: 8px;
+    color: #0e2f56
+  }
+  #about .upper .image {
+    position: relative
+  }
+  #about .upper .image img {
+    width: 1157px;
+    position: absolute;
+    right: -21vw;
+    top: -225px
+  }
+}
 footer {
   position: absolute;
   left: 0;

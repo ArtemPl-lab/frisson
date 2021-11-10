@@ -45,7 +45,7 @@ const Politice = () => {
                     </div>
                 </div>
             </section>
-            <DesktopOnly />
+            {/* <DesktopOnly /> */}
         </>
     )
 }

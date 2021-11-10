@@ -43,7 +43,7 @@ const Terms = () => {
                     </div>
                 </div>
             </section>
-            <DesktopOnly />
+            {/* <DesktopOnly /> */}
         </>
     )
 }
