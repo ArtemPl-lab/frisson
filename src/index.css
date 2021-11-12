@@ -912,7 +912,7 @@ header .wrapper .menu ul li a.active {
   right: 0
 }
 @media screen and (max-width: 500px) {
-  .logo{
+  .back, .menu{
     display: none !important;
   }
   #about.alt .upper .image img {
