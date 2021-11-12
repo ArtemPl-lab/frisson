@@ -912,6 +912,9 @@ header .wrapper .menu ul li a.active {
   right: 0
 }
 @media screen and (max-width: 500px) {
+  .logo{
+    display: none !important;
+  }
   #about.alt .upper .image img {
     right: -26vw;
     top: -300px;
