@@ -37,10 +37,10 @@ const HomePage = ({ googlePlay, appStore }) => {
                                         <img src={phone} alt="" />
                                     </div>
                                     <div className="codes">
-                                        <ExternalLink to={googlePlay}>
+                                        <ExternalLink to="https://play.google.com/store/apps/details?id=com.frissonmobile">
                                             <img src={googlePlayImg} alt="" />
                                         </ExternalLink>
-                                        <ExternalLink to={appStore}>
+                                        <ExternalLink to="https://apps.apple.com/app/id1572292524">
                                             <img src={appStoreImg} alt="" />
                                         </ExternalLink>
                                     </div>
