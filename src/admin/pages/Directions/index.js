@@ -3,6 +3,7 @@ import { Button, Content, Headline, Input } from "../../components";
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../store';
 import Select from 'react-dropdown-select';
+import { TextArea } from '../../components/TextArea';
 
 const options = [
     {
@@ -154,15 +155,23 @@ export const Directions = observer(props => {
                                         {
                                             direction.types.map(type => {
                                                 return(
-                                                    <div className={styles.type_wrapper}>
+                                                    <>
+                                                                                                            <div className={styles.type_wrapper}>
                                                         <Input value={type.name} onChange={(e)=>directions.updateType({
                                                             ...type,
                                                             name: [e.target.value]
                                                         })}/>
-                                                        {/* <div className={styles.bulk_type} onClick={() => directions.deleteType(type.id)}>
+                                                        <div className={styles.bulk_type} onClick={() => directions.deleteType(type.id)}>
                                                             Удалить
-                                                        </div> */}
+                                                        </div>
                                                     </div>
+                                                    <TextArea 
+                                                        value={type.multiline_name} onChange={(e)=>directions.updateType({
+                                                            ...type,
+                                                            multiline_name: [e.target.value]
+                                                        })}
+                                                    />
+                                                    </>
                                                 );
                                             })
                                         }
