@@ -19,10 +19,10 @@ const HomeAlt = ({ googlePlay, appStore }) => {
                             <div className="col col-md-5">
                                 <div className="images">
                                     <div className="codes">
-                                        <ExternalLink to={googlePlay}>
+                                        <ExternalLink link="https://play.google.com/store/apps/details?id=com.frissonmobile">
                                             <img src={googlePlayImg} alt="" />
                                         </ExternalLink>
-                                        <ExternalLink to={appStore}>
+                                        <ExternalLink link="https://apps.apple.com/app/id1572292524">
                                             <img src={appStoreImg} alt="" />
                                         </ExternalLink>
                                     </div>
