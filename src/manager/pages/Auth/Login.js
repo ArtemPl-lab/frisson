@@ -10,7 +10,7 @@ export const Login = props => {
     const { manager } = useStore();
     const [load, setLoad] = useState(false);
     const [state, setState] = useState({
-        manager_id: '',
+        phone: '',
         password: ''
     });
     const handleChange = e => {
@@ -37,11 +37,11 @@ export const Login = props => {
                         <div className={styles.formGroup}>
                             <input
                                 type="text"
-                                name="manager_id"
+                                name="phone"
                                 placeholder="+7 999 999 99 99"
                                 className={styles.phoneMask}
                                 onChange={handleChange}
-                                value={state.manager_id}
+                                value={state.phone}
                                 className={styles.input}
                             />
                         </div>
