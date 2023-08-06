@@ -34,21 +34,21 @@ export const Settings = observer(props => {
             <div className={styles.info__label}>
                 Основная информация
             </div>
-            <Input 
+            <Input
                 value={manager.data.full_name}
                 name="full_name"
                 onChange={(e) => manager.update({
                     [e.target.name]: e.target.value
                 }, history)}
             />
-            <InputMask mask="+7(999) 999-99-99" value={manager.data.phone} onChange={(e) => manager.update({
+            <InputMask mask="+7 (999) 999-99-99" value={manager.data.phone} onChange={(e) => manager.update({
                     [e.target.name]: e.target.value
                 }, history)} name="phone">
                 {
                     (inputProps) => <Input placeholder="Номер телефона"  name="phone" {...inputProps}/>
                 }
             </InputMask>
-            <Input 
+            <Input
                 value={manager.data.email}
                 name="email"
                 placeholder="Email"
@@ -56,7 +56,7 @@ export const Settings = observer(props => {
                     [e.target.name]: e.target.value
                 }, history)}
             />
-            <Input 
+            <Input
                 value={manager.data.password}
                 placeholder="Придумайте пароль"
                 name="password"

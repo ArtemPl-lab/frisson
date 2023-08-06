@@ -13,7 +13,7 @@ import InputMask from 'react-input-mask';
 const getManagerToken = async (id) => {
     const res = await api.get(`/admins/managers/${id}/token`);
     const { auth_token } = await res.json();
-    return (res.ok ? auth_token : null); 
+    return (res.ok ? auth_token : null);
 }
 
 const getData = async id => {
@@ -111,10 +111,10 @@ export const UserPage = observer(props => {
             <Headline>
                 {
                     id === 'new' ?
-                    'Новый профиль': 
+                    'Новый профиль':
                     `Настройки профиля (ID: ${id})`
                 }
-                
+
             </Headline>
             <br />
             <div className={styles.label}>
@@ -123,7 +123,7 @@ export const UserPage = observer(props => {
             <div className={styles.info__grid}>
                 <Input placeholder="Имя Фамилия / Название компании" onChange={handleChange} name="full_name" value={state.full_name}/>
                 <Input placeholder="Почта" onChange={handleChange}  name="email" value={state.email}/>
-                <InputMask mask="+7(999) 999-99-99" value={state.phone} onChange={handleChange} name="phone">
+                <InputMask mask="+7 (999) 999-99-99" value={state.phone} onChange={handleChange} name="phone">
                     {
                         (inputProps) => <Input placeholder="Номер телефона"  name="phone" {...inputProps}/>
                     }
@@ -167,7 +167,7 @@ export const UserPage = observer(props => {
                             Управлять этим аккаунтом
                         </div>
                     </footer>
-                </> : 
+                </> :
                 ''
             }
         </div>

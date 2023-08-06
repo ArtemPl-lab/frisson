@@ -31,7 +31,7 @@ export const Login = props => {
                     <h2>Вход в личный кабинет Frisson</h2>
                     <form onSubmit={onSubmit}>
                         <div className={styles.formGroup}>
-                            <InputMask mask="+7(999) 999-99-99" value={state.phone} onChange={handleChange} name="phone"
+                            <InputMask mask="+7 (999) 999-99-99" value={state.phone} onChange={handleChange} name="phone"
                                        placeholder="Номер телефона"
                                        className={styles.input}
                             >
