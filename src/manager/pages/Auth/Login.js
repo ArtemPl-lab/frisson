@@ -5,6 +5,7 @@ import { useStore } from '../../store';
 import { Load } from '../Load';
 import styles from './Login.module.css';
 import DesktopOnly from '../../../desktop/DesktopOnly';
+import InputMask from 'react-input-mask';
 
 export const Login = props => {
     const { manager } = useStore();
@@ -18,7 +19,7 @@ export const Login = props => {
             ...prev,
             [e.target.name]: e.target.value
         }));
-    }
+    };
     const onSubmit = async e => {
         e.preventDefault();
         setLoad(true);
@@ -35,15 +36,16 @@ export const Login = props => {
                     <h2>Вход в личный кабинет Frisson</h2>
                     <form onSubmit={onSubmit}>
                         <div className={styles.formGroup}>
-                            <input
-                                type="text"
-                                name="phone"
-                                placeholder="+7 999 999 99 99"
-                                className={styles.phoneMask}
-                                onChange={handleChange}
-                                value={state.phone}
-                                className={styles.input}
-                            />
+                            <InputMask mask="+7(999) 999-99-99" value={state.phone} onChange={handleChange} name="phone"
+                                       placeholder="+7 999 999 99 99"
+                                       className={styles.input}
+                            >
+                                {
+                                    (inputProps) => <input
+                                        {...inputProps}
+                                    />
+                                }
+                            </InputMask>
                         </div>
                         <div className={styles.formGroup}>
                             <input
