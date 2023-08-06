@@ -5,6 +5,7 @@ import Header from '../../../desktop/Header';
 import { useStore } from '../../store';
 import styles from './Login.module.css';
 import DesktopOnly from '../../../desktop/DesktopOnly';
+import InputMask from 'react-input-mask';
 
 export const Register = observer(props => {
     const [validation, setValidation] = useState(false);
@@ -34,10 +35,10 @@ export const Register = observer(props => {
                     <h2>Регистрация</h2>
                     <form onSubmit={handleSubmit} className={validation ? 'was-valid' : ''} noValidate>
                         <div className={styles.formGroup}>
-                            <input 
-                                type="text" 
-                                placeholder="Имя и фамилия" 
-                                name="full_name" 
+                            <input
+                                type="text"
+                                placeholder="Имя и фамилия"
+                                name="full_name"
                                 value={state.full_name}
                                 onChange={handleChange}
                                 className={styles.input}
@@ -45,22 +46,22 @@ export const Register = observer(props => {
                             />
                         </div>
                         <div className={styles.formGroup}>
-                            <input 
-                                type="tel" 
-                                placeholder="Номер телефона" 
-                                className={styles.phoneMask} 
-                                name="phone" 
-                                value={state.phone}
-                                onChange={handleChange}
-                                className={styles.input}
-                                required
-                            />
+                            <InputMask mask="+7(999) 999-99-99" value={state.phone} onChange={handleChange} name="phone"
+                                       placeholder="Номер телефона" className={styles.input} required>
+                                {
+                                    (inputProps) => <input
+                                        type="tel"
+
+                                        {...inputProps}
+                                    />
+                                }
+                            </InputMask>
                         </div>
                         <div className={styles.formGroup}>
-                            <input 
+                            <input
                                 type="email"
-                                placeholder="Электронная почта" 
-                                name="email" 
+                                placeholder="Электронная почта"
+                                name="email"
                                 value={state.email}
                                 onChange={handleChange}
                                 className={styles.input}
@@ -68,11 +69,11 @@ export const Register = observer(props => {
                             />
                         </div>
                         <div className={styles.formGroup}>
-                            <input 
+                            <input
                                 type="password"
-                                placeholder="Пароль" 
+                                placeholder="Пароль"
                                 id="password"
-                                name="password" 
+                                name="password"
                                 value={state.password}
                                 onChange={handleChange}
                                 className={styles.input}
@@ -80,9 +81,9 @@ export const Register = observer(props => {
                             />
                         </div>
                         <div className={styles.formGroup}>
-                            <input 
+                            <input
                                 type="password"
-                                placeholder="Повторите пароль" 
+                                placeholder="Повторите пароль"
                                 name="confirm"
                                 pattern={state.password}
                                 className={styles.input}
